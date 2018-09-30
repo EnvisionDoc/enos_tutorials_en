@@ -1,23 +1,26 @@
-# EnOS device access method summary
+# EnOS™ device access method summary
 
-## Access method summary
+## Connection methods
 
 
-As shown below, generally the real-time device data can be connected to the EnOS
+As shown below, generally the real-time device data can be connected to the EnOS™
 platform in three ways:
 
--   **To be connected via EnOS IoT Hub under MQTT protocol (cloud access service).**
+-   **To be connected via EnOS™ IoT Hub under MQTT protocol (cloud access service).**
     This requires the device end to support MQTT protocol and is applicable to
     most new devices of Internet of Things;
 
--   **To be connected via EnOS Edge (Edge can be deployed locally or on the cloud).** This applies to access of most traditional devices and systems;
+-   **To be connected via EnOS™ Edge (Edge can be deployed locally or on the cloud).** This applies to access of most traditional devices and systems;
 
--   **To be connected via EnOS Cloud Edge clusters (cloud access service).** This
+-   **To be connected via EnOS™ Cloud Edge clusters (cloud access service).** This
     requires the device to be connected to bear a unique ID and uploading under
     communication protocol. This method is frequently used for photovoltaic
     device access;
 
-    ![](media/Method_summary_Access_method_summary.png)
+-   **Method 3: Connect through EnOS Cloud Edge clusters (cloud access service).**  
+  This requires that the device to be connected has a unique ID and can upload data through supported communication protocols. This method is frequently used for photovoltaic device connection.
+
+    ![](media/device_connection_methods.png)
 
 ## Matrix of scenarios applicable to different access methods
 
@@ -33,7 +36,7 @@ platform in three ways:
 
 ![](media/Method_summary_List_of_Edge_technical_parameters.png)
 
-## EnOS device access solution example
+## EnOS™ device access solution example
 
 ### Scenario 1: photovoltaic monitoring application (the device is connected to the cloud via local Edge)
 
@@ -56,7 +59,7 @@ Assumptions:
 the brand and model of inverters and electric meters vary in different projects;
 
 2) There is no third party system in the site, and the device data need to be
-collected directly from EnOS cloud;
+collected directly from EnOS™ cloud;
 
 3) The total number of devices to be connected to a site does not exceed 20, and
 each device collects data from 20 points on average, with an average sampling
@@ -75,7 +78,7 @@ can’t be varied. Therefore, data acquisition needs to be completed with Edge.
 
 [Targeted at applications. All projects reuse this model.]
 
-1) Device modeling (on EnOS cloud platform):
+1) Device modeling (on EnOS™ cloud platform):
    Creation of photovoltaic domain – creation of photovoltaic site model – creation
 of inverter model, electric meter model;
 
@@ -89,11 +92,11 @@ of inverter model, electric meter model;
 
    Purchase an Edge based on the recommended list and install the Edge software;
 
-3) Create a device template (on EnOS cloud platform):
+3) Create a device template (on EnOS™ cloud platform):
 
    **Note:** Assume that there are 20 inverters of the same brand and the same model in the site, and there is a measurement electric meter, a device template for this inverter model and a device template for the electric meter should be created.
 
-4) Connect the cloud (on EnOS cloud platform): Create cloud assets (model instantiation), Edge, connection configurations;
+4) Connect the cloud (on EnOS™ cloud platform): Create cloud assets (model instantiation), Edge, connection configurations;
 
 5) On-site wiring: 485 bus is used in the site to connect all inverters and electric meters
 serially in a daisy chain, and then connect to a serial port server;
@@ -107,7 +110,7 @@ connected to the public network;
 device data have been correctly collected by the cloud.
 
    So far, the device data have been collected by the cloud. The next steps will be
-data acquisition, processing, and analysis via EnOS API with developed
+data acquisition, processing, and analysis via EnOS™ API with developed
 photovoltaic applications.
 
 ### Scenario 2: Home energy storage battery monitoring application (device connected directly to the cloud via MQTT protocol)
@@ -130,7 +133,7 @@ Assumptions:
 capability to modify external communication system of the batteries;
 
 2) There is no third party system in the site, and the battery device is
-connected directly to EnOS cloud platform;
+connected directly to EnOS™ cloud platform;
 
 3) There is a local wired network with access to public network connected to the
 battery communication system;
@@ -146,7 +149,7 @@ need to create a device template at the cloud.
 
 #### 3. MVP business construction
 
-1) Device modeling (on EnOS cloud platform):
+1) Device modeling (on EnOS™ cloud platform):
 
    Create a home energy storage domain – create a home site model – create a
 battery model;
@@ -155,18 +158,18 @@ battery model;
 Client:
 
    Modify the battery device, develop device self-registration service in PLC
-(calling EnOS API via Web Service protocol), and integrate MQTT Client.
+(calling EnOS™ API via Web Service protocol), and integrate MQTT Client.
 Determine MQTT parameters and relevant message structure based on platform MQTT
 access standards. Download the license, device id, and key that have been
 applied at the platform to the device as firmware. This will allow automatic
-connection of the device to EnOS cloud platform on power-up.
+connection of the device to EnOS™ cloud platform on power-up.
 
 3) After the battery is powered on and connected to the grid, it will be
-automatically connect to EnOS cloud platform for device registration and asset
+automatically connect to EnOS™ cloud platform for device registration and asset
 creation, and transmit the data already mapped to the model point to the cloud.
 
    So far the automatic connection and registration of the device have been
 completed. The next steps will be data acquisition, processing, and analysis via
-EnOS API with developed energy storage applications.
+EnOS™ API with developed energy storage applications.
 
 ![](media/Summary_of_device_access_home_page.png)

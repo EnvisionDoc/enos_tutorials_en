@@ -2,16 +2,16 @@
 
 ## Asset and asset tree
 
-In the EnOS platform, an *asset* is a device or an organization entity where the
+In the EnOS™ platform, an *asset* is a device or an organization entity where the
 asset belongs to. In practice, devices are typically organized hierarchically.
 The hierarchical structure is an *asset tree*, and each node in the tree is an
 asset.
 
-The EnOS platform allows you to build your asset tree based on certain rules
+The EnOS™ platform allows you to build your asset tree based on certain rules
 where a child asset node belongs to a parent asset node in terms of a certain
 criteria.
 
-The EnOS platform provides the following types of asset nodes to help you
+The EnOS™ platform provides the following types of asset nodes to help you
 organize your assets:
 
 -   **Site**: indicates a physical site where your devices reside. Site is the
@@ -39,12 +39,12 @@ organize your assets:
     For example, a turbine device in the wind farm domain.
 
 Among the types of asset node, projects and devices are created from *model*. A
-model is the abstraction of the assets that share the same asset type. EnOS
+model is the abstraction of the assets that share the same asset type. EnOS™
 provides *predefined models* for a lot of common devices, you can also define
 *customized model* for your own devices. For more information, see [link to
 model].
 
-When an asset is created from a model, EnOS provides the following types of data
+When an asset is created from a model, EnOS™ provides the following types of data
 for the asset:
 
 -   Attribute
@@ -83,7 +83,7 @@ attribute structures, some common calculation points, and relevant processing
 logics.
 
 A hierarchical structure also exists among device models. The hierarchical
-structure defined in EnOS platform is shown in the figure below:
+structure defined in EnOS™ platform is shown in the figure below:
 
 ![](media/Basic_concepts_A_hierarchical_structure.png)
 
@@ -101,7 +101,7 @@ A high-level procedure of managing device models is as follows:
 
 **Note:** A sub-model inherits attributes and measurement points of a basic model, which can’t be modified. However, new measurement points and calculation logics can be added to a sub-model.
 
-Based on industrial expertise, the EnOS platform has accumulated a number of common models available for use, you can also define your ownmodels.
+Based on industrial expertise, the EnOS™ platform has accumulated a number of common models available for use, you can also define your ownmodels.
 
 ### 2. What is included in a device model ?
 
@@ -136,8 +136,9 @@ sub-model for an electric meter basic model and then adding a calculation script
 to the sub-model. Every time new data are received, this calculation condition
 will be triggered to solve the final value. In this case, setting an expression
 in the script will accomplish the target, as shown below:
-
-```output("UA", input("UA_tmp") \* (10 \*\* (input("P") - 4))).```
+```
+output("UA", input("UA_tmp") \* (10 \*\* (input("P") - 4)))
+```
 
 
 ### 3. Why is a device model required?
@@ -156,7 +157,7 @@ for common electric meter models will be possible in the application.
 In actual projects, a matching between different electric meters and common
 electric meter model will enable processing of various electric meter data with
 the same application. In this way, the combination of a suitable model and a
-model adapter (called **device template** on EnOS platform) will help
+model adapter (called **device template** on EnOS™ platform) will help
 effectively address complexities in reality and greatly reduce repeated
 application development work.
 
@@ -168,7 +169,7 @@ A device template is an adapter between a common device model and a specific
 model device. A device template allows mapping between a specific device
 measurement point and a common device model.
 
-Based on industrial experiences for years, the EnOS platform has accumulated a
+Based on industrial experiences for years, the EnOS™ platform has accumulated a
 number of device templates available for inquiry and reuse, and supports
 definition of custom device templates.
 
@@ -184,7 +185,7 @@ and other information for re-use.
 
 **Communication protocol and configuration files**
 
-EnOS platform provides a rich communication protocol base and supports most
+EnOS™ platform provides a rich communication protocol base and supports most
 common standard communication protocols. You can browse platform communication
 protocol base and select suitable communication protocol programs.
 
@@ -202,7 +203,7 @@ You can select a device model base on which to create the device template, and
 set mapping between a specific device measurement points and a model standard
 measurement points.
 
-In addition to 1-to-1 mapping, EnOS also supports complex mapping relations
+In addition to 1-to-1 mapping, EnOS™ also supports complex mapping relations
 configured through formulas.
 
 The following screenshot shows a list of device templates:
@@ -361,10 +362,10 @@ The model point is y (output), and the collection point (input) is
 
 ### 1. Communication protocol overview
 
-Communication protocol, is a common phrase used in energy industry. The EnOS
+Communication protocol, is a common phrase used in energy industry. The EnOS™
 platform provides a rich protocol library that contains common protocols of
 energy and power industry, such as modbus, IEC104, OPCDA, OPCUA, and OPC-XML-DA.
-In addition, EnOS supports conventions for the major device manufacturers in the
+In addition, EnOS™ supports conventions for the major device manufacturers in the
 industry.
 
 With these conventions made available by the platform, you can browse and select
@@ -526,18 +527,18 @@ Some private conventions supported are given below:
 
 ### 1. API Service overview
 
-API Service is the central external access service tool provided by EnOS
-platform, including retrieval of platform public API (EnOS API) and management
-of user-built APIs. API Service provides central EnOS platform public API
+API Service is the central external access service tool provided by EnOS™
+platform, including retrieval of platform public API (EnOS™ API) and management
+of user-built APIs. API Service provides central EnOS™ platform public API
 services that allow relevant resources (including device assets, personnel,
-applications, and privileges) stored in EnOS platform to be added, deleted,
+applications, and privileges) stored in EnOS™ platform to be added, deleted,
 modified, or inquired by developers. API Service also provides complete API
 hosting services, helping the developers to make the services developed with
-ENOS available to partners as APIs.
+EnOS™ available to partners as APIs.
 
-### 2. EnOS API
+### 2. EnOS™ API
 
-EnOS platform provides abundant APIs covering different core business flows of
+EnOS™ platform provides abundant APIs covering different core business flows of
 the platform. Based on these APIs, the developers can register, obtain, modify,
 or deleted relevant resources (including device assets, personnel, applications,
 and privileges) conveniently. In this way, the developers can develop
@@ -552,7 +553,7 @@ applications easily and quickly depending on their business needs.
 
 -   Provide interface account and privilege related interface.
 
-EnOS API is also called EEOP interface (Envision EnOS Open Platform).
+EnOS™ API is also called EEOP interface (Envision EnOS™ Open Platform).
 Applications can get access to asset data connected to the platform via EEOP,
 including asset relation inquiry, and inquiry of real-time and history data.
 
@@ -560,12 +561,12 @@ including asset relation inquiry, and inquiry of real-time and history data.
 
 ### 1. IoT Hub overview
 
-IoT Hub is a cloud access service provided by EnOS platform for device access.
+IoT Hub is a cloud access service provided by EnOS™ platform for device access.
 Intelligent devices can establish a safe bi-directional connection with cloud
 IoT Hub under mainstream protocols of Internet of Things (MQTT protocols), thus
 creating projects of Internet of Things rapidly.
 
-During this process, EnOS platform provides cloud broker services. By developing
+During this process, EnOS™ platform provides cloud broker services. By developing
 simple MQTT client, the user can transmit the date of intelligent devices via an
 MQTT protocol to the broker server. The broker forwards the data received from
 the client to cloud kafka. The data can then be used by applications for big
@@ -588,13 +589,13 @@ The devices to be connected should support MQTT protocol, and the MQTT client
 should be realized. New intelligent devices of Internet of Things are usually
 the targets.
 
-## EnOS Edge
+## EnOS™ Edge
 
-### 1. EnOS Edge overview
+### 1. EnOS™ Edge overview
 
-Edge is the front end of Envision EnOS IoT platform for data acquisition. It’s
+Edge is the front end of Envision EnOS™ IoT platform for data acquisition. It’s
 used to collect on-site device data or connected to a third party system for
-data acquisition and transmission of data to EnOS cloud. Edge, as software,
+data acquisition and transmission of data to EnOS™ cloud. Edge, as software,
 supports data acquisition, multiple communication conventions, local caching and
 breakpoint continuation. It can either deployed in a cloud machine or a local
 hardware of a specified brand model.
@@ -609,13 +610,13 @@ In energy, power, building, and energy storage industries, most devices are not
 compatible with MQTT protocols. In these scenarios, Edge with multiple
 convention analysis abilities is often used.
 
-Moreover, instead of communicating directly with EnOS platform, some devices are
+Moreover, instead of communicating directly with EnOS™ platform, some devices are
 connected to a third party system (such as SCADA system), and the data are
-relayed via the third party system to the EnOS platform. Traditional SCADA
+relayed via the third party system to the EnOS™ platform. Traditional SCADA
 systems typically don’t support relay via MQTT protocols. In these scenarios,
 Edge will also be selected.
 
-### 3. Examples of EnOS local Edge
+### 3. Examples of EnOS™ local Edge
 
 ![](media/Basic_concepts_local_edge1.png)
 
@@ -623,10 +624,10 @@ Edge will also be selected.
 
 ![](media/Basic_concepts_local_edge3.png)
 
-## EnOS Portal
+## EnOS™ Portal
 
-EnOS Portal has integrated device access to provide functional groups including
+EnOS™ Portal has integrated device access to provide functional groups including
 real-time data processing, application development, data analysis and reporting,
 offline data processing, data management, and privilege control. The user can
-apply to the platform for a login account for entering EnOS Portal and
+apply to the platform for a login account for entering EnOS™ Portal and
 completing various configurations.

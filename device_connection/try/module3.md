@@ -1,27 +1,27 @@
-# Module 3. ConfiguringEnOS cloud
+# Module 3. ConfiguringEnOS™ cloud
 
-EnOS cloud configuration mainly consists of the following steps:
+EnOS™ cloud configuration mainly consists of the following steps:
 
 ![](media/module3_main_steps.png)
 
-## Applying for an EnOS Portal account
+## Applying for an EnOS™ Portal account
 
-If an EnOS Portal account is already available, ask the trainer to add the
+If an EnOS™ Portal account is already available, ask the trainer to add the
 account to the **Device Access Training** user group under EnOS_Training_CN
 organization (Origination Unit).
 
-If an EnOS Portal account is not available, apply for an EnOS Portal account
+If an EnOS™ Portal account is not available, apply for an EnOS™ Portal account
 first and then ask the trainer to add the account to the corresponding user
 group in the above organization.
 
-After the application is approved, log in EnOS Portal, and enter **Console** for
-viewing and checking. EnOS Portal address: <https://developer.envisioncn.com>
+After the application is approved, log in EnOS™ Portal, and enter **Console** for
+viewing and checking. EnOS™ Portal address: <https://developer.envisioncn.com>
 
 ## Create a new site and a new device
 
 **Procedure:**
 
-1.  Under **Asset Management \> Site and Devices** menu, click **New Site** button;
+1.  Under **Asset Management > Site and Devices** menu, click **New Site** button;
 
 2.  Fill the site attribute information: Click **Add Domain**, select **Site Type**, and fill the site information, as shown in the figure below:
     ![](media/module3_site_type.png)
@@ -30,7 +30,7 @@ viewing and checking. EnOS Portal address: <https://developer.envisioncn.com>
 
 ## Attach the site to the corresponding organization node
 
-Under the **Asset Management \> Asset Tree** menu, attach the site created
+Under the **Asset Management > Asset Tree** menu, attach the site created
 during the above step to the organization node under **Device Access Training
 Area** organization node, as shown in the figure:
     ![](media/module3_add_station.png)
@@ -39,7 +39,7 @@ Area** organization node, as shown in the figure:
 
 **Procedure:**
 
-1.  Under **Asset Management \> Templates** menu, click **New  Template** button, as shown in the figure below:
+1.  Under **Asset Management > Templates** menu, click **New  Template** button, as shown in the figure below:
     ![](media/module3_device_template.png)
 
 2.  Fill and save the basic template information, as shown in the figure below:
@@ -155,8 +155,7 @@ communication test. The data will be finally mapped to the model point (may be s
 
 2.  View history data
 
-    Click the
-![](media/module3_search_button.png) icon in history data field to view history data of the current model point.
+    Click the ![](media/module3_search_button.png) icon in history data field to view history data of the current model point.
 
     **Note:** The history data can be viewed graphically under the trend diagram page.
 

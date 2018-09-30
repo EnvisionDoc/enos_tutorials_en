@@ -5,6 +5,6 @@ advance. You apply for a cloud Edge serial number from the trainer for
 subsequent registration.
 
 This step requires only the serial number for Edge. Device registration is performed during
-EnOS cloud configuration.
+EnOS™ cloud configuration.
 
 ![](media/module1_SN.png)
