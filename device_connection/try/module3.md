@@ -1,165 +1,207 @@
-# Module 3. ConfiguringEnOS™ cloud
+# Module 3. Configuring EnOS™ cloud
 
 EnOS™ cloud configuration mainly consists of the following steps:
 
 ![](media/module3_main_steps.png)
 
-## Applying for an EnOS™ Portal account
+## Step 1: Accessing the EnOS™ Console from EnOS Developer Center
 
-If an EnOS™ Portal account is already available, ask the trainer to add the
-account to the **Device Access Training** user group under EnOS_Training_CN
-organization (Origination Unit).
+If an EnOS™ Developer Center account is already available, ask the trainer to add the account to the **Device Access Training** user group under `EnOS_Training_CN` organization (Origination Unit).
 
-If an EnOS™ Portal account is not available, apply for an EnOS™ Portal account
-first and then ask the trainer to add the account to the corresponding user
-group in the above organization.
+If an EnOS™ Developer Center account is not available, apply for an account first and then ask the trainer to add the account to the corresponding user group in the above organization.
 
-After the application is approved, log in EnOS™ Portal, and enter **Console** for
-viewing and checking. EnOS™ Portal address: <https://developer.envisioncn.com>
+After the application request is approved, log into the EnOS™ Developer Center through <https://developer.envisioncn.com>, and click **Console**.
 
-## Create a new site and a new device
+## Step 2: Create a new site and a new device
 
-**Procedure:**
+1.  Under the **Asset Management > Site and Devices** menu, click **New Site**.
 
-1.  Under **Asset Management > Site and Devices** menu, click **New Site** button;
+    ![](media/module3_newsite.png)
 
-2.  Fill the site attribute information: Click **Add Domain**, select **Site Type**, and fill the site information, as shown in the figure below:
+2.  Fill the site attribute information. Click **Add Domain**, select **Site Type**, and fill the site information, as shown in the figure below:
+
     ![](media/module3_site_type.png)
 
-3.  Click **Add Device**, and select device model to create an instance of model. Fill the device information, and save the configuration.
+3.  Click **Add Device**, and select the device model to create an instance of model. Fill the device information, and save the configuration as shown in the following figure:
 
-## Attach the site to the corresponding organization node
+    ![](media/module3_devicemodel.png)
 
-Under the **Asset Management > Asset Tree** menu, attach the site created
-during the above step to the organization node under **Device Access Training
-Area** organization node, as shown in the figure:
-    ![](media/module3_add_station.png)
+## Step 3: Attach the site to the corresponding organization node
 
-## Create a Device Template
+Under the **Asset Management > Asset Tree** menu, attach the site created during the above step to the organization node under **Device Connect Training** organization node, as shown in the figure:
 
-**Procedure:**
+![](media/module3_assettreedevicetraining.png)
 
-1.  Under **Asset Management > Templates** menu, click **New  Template** button, as shown in the figure below:
+## Step 4: Create a Device Template
+
+1.  Under the **Asset Management > Templates** menu, click **New  Template**, as shown in the figure below:
+
     ![](media/module3_device_template.png)
 
-2.  Fill and save the basic template information, as shown in the figure below:
-    ![](media/module3_create_device_template.png) Please select **Training Specific** in the field of domain, and **Meter** of device model.
+2.  Fill and save the basic template information, as shown in the figure below.
+
+    - **Domain**: EnOS_Lab_Domain
+
+    - **Device Type**: Meter
+
+
+    ![](media/module3_create_device_template.png)
+
+
     ![](media/module3_device_template_meter.png)
 
-3.  Click             ![](media/module3_edit_new_device_template.png) Edit the new device template;
 
-4.  Select the protocol for the template, as shown in the figure below:
+3.  Click  ![](media/module3_edit_new_device_template.png) Edit the new device template;
+
+4.  Select the protocol for the template. In this lab, the edge uses ModbusRTU protocol to communicate with EnOS cloud, and Edge acts as the TCP Client and the simulated device acts as the TCP Server.
+    - **Protocol Type**: ModbusRTU
+    - **Protocol**: ModbusRTU-Client-Std V1.1_Release
 
     ![](media/module3_potrol_type.png)
 
-    **Note:** Select **ModbusRTU** as protocol type, and **ModbusRTU-Client-Std V1.1_Release** as the protocol (because this test uses modbus-rtu protocol, Edge acts as the TCP Client, and the simulated device acts as the TCP Server).
-
-5.  Download the config.sys template, and modify and upload the configuration, as shown in the figure below:
+5.  Click **Template** next to `config.sys` to download the template.
 
     ![](media/module3_config_sys.png)
 
-    **Note:** Select **Template Download** instead of **Download** after it.
+    Modify the downloaded template and upload the configuration, as shown in the figure below:
 
     ![](media/module3_note_config_sys.png)
-    **Note:** The default configuration of Config.sys can be used and uploaded directly. Further modifications can be made if necessary.
-    **Note:** After successful uploading, config.sys will be shown in green.
-6.  Download point.csv template. **Modify** and **Save** the configuration, as shown in the figure below:
+
+    You can use the default configuration of `Config.sys` and uploaded directly. Further modifications can be made if necessary.
+
+    After successfully uploaded, `config.sys` turns green.
+
+6.  Click **Template** next to `point.csv` to download the data point template. Modify and save the configuration, as shown in the figure below:
+
     ![](media/module3_download_point_csv.png)
 
-    **Note:** Select **Template Download** instead of **Download** after it (after your own point.csv is uploaded, the **Download** button after it can be used to download your own point.csv field).
+    *Note: Please complete the configuration according to the above figure, and save it as a CSV file after configuration. Before uploading this `point.csv` file, use NotePad++ to convert the `point.csv` file into the UTF-8 code format.*
 
-    **Note:** Please complete the configuration according to the above figure, and save it as a CSV file after configuration;
-    **Note:** Before uploading this point.csv file, use NotePad++ to convert the point.csv file into UTF-8 code format.
     ![](media/module3_transfer_utf8.png)
 
-    **Note:** After successful uploading, point.csv will be shown in green, and the point table contents of point.csv will be shown in the lower preview field.
+    After successful uploaded, `point.csv` will be shown in green, and the point table contents of point.csv will be shown in the lower preview field.
 
-7.  Configuration of mapping relation between collection point and model point, as shown in the figure below:
+7.  Configure the mapping between the aquisition point and model point, as shown in the figure below.
+    - Domain point: Meter.Voltage <-> Aquisition point: ai.1
+    - Domain point: Meter.LightOn <-> Aquisition point: ao.6
 
     ![](media/module3_edit_mapping_point.png)
 
-8.  Remember to save the device template configuration.
+    After completing the mapping, you will see the results in the list.
 
-## Register Edge and complete relevant connection configuration
+    ![](media/module3_mappingfinish.png)
 
-**Procedure:**
+8.  Click **Save** to save the device template configuration.
 
-1.  In **Edge Connections** menu, enter the site you have created for configure connection, as shown in the figure below:
+    ![](media/module3_confirmmapping.png)
 
-    ![](media/module3_edge_configeration.png)
+## Step 5: Activate Edge and complete relevant connection configuration
 
-2.  Add the activate Edge, and input the Edge name, serial number and MAC address, as shown in the figure below:
+1.  In **Asset Management** > **Edge Connections** menu, locate and open the site you created.
+
+2.  Click **Activate Edge** from the screen, and enter the Edge name, serial number and MAC address, as shown in the figure below:
 
     ![](media/module3_activate_edge.png)
 
-    **Note:** The Edge serial number is provided by the trainer in advance, and the system will check if the filled serial number is valid.
+    - **Box Name** : named the edge as you wish.
+    - **Serial number** : provided by the trainer in advance.
+    - **MAC Address**(*Not necessary* ): input your computer's mac addres.
 
-3.  Add the device and associate the new device template, as shown in the figure below:
+    *Note: The Edge serial number is provided by the trainer in advance, and the system will verify the validity of the serial number. After the validation succeeds, you can proceed to associate device template.*
+
+3.  Add the connection. Select TCP/IP client as the connection method. IP should be the IPv4 address of the local PC during filling of test information. The port number should be 502 (depending on configuration in the modbus slave protocol simulator, Port 502 in this test), as shown in the figure below:
+
+    ![](media/module3_addconnection.png)
+
+    ![](media/module3_addconnection2.png)
+
+    - **Name** : named the edge as you wish.
+    - **Basic Info** : TCP/IP Client
+    - **Address(Primary)**: input your computer's IP addres and port 502.
+
+4.  Add the device and associate the new device template, as shown in the figure below:
+
     ![](media/module3_add_device.png)
+
+    When you have multiple devices in the site, all devices in this site are shown in the device list here. Select the device, and then select a device template to associate from the device template field below.
+
+    *Note: If multiple devices are selected at the same time, they have to be of the same device model.*
+
     ![](media/module3_add_device_to_connection.png)
 
-    **Note:** All devices in this site can be viewed in the device list here. First select the device, and then select a device template for association from the device template field below. If multiple devices are selected at the same time, they have to be of the same device model.
-    ![](media/module3_add_device_success.png)
+    Select the device and associate the device template. After saving, the device will be added to the connection.
 
-    **Note:** Select the device and associate the device template. After saving, the device will be added to the connection.
+5.  Click **Publish** to publish the configuration to Edge.
 
-5.  Publish the configuration to Edge.
+    *Note: Configurations are packed into a configuration file. After you click **Publish**, the file is downloaded to the corresponding Edge.*
 
-    **Note:** Various configurations of the cloud will be finally packed into a configuration file. Clicking **Publish** button will allow downloading of the configuration file to the corresponding Edge.
-    ![](media/module3_add_device_success2.png)
+    *Note: The current publication status will be displayed on the right. Typically the publication process lasts for 2 minutes. A successful publication will be indicated as **Success**, and the time of the latest successful publication will be displayed.*
 
-    **Note:** The current publication status will be displayed on the right. Typically the publication process lasts for 2 minutes. A successful publication will be indicated as **Success**, and the time of the latest successful publication will be displayed.
+## Step 6: Test and debug the connection
 
-## Communication test and debugging
+After you have successfully published the above configuration, you can view the connection status and check the data aquired from your computer through the following procedure:
 
-**Procedure:**
+1.  Check the connection status indicator.
+    - If the connection is abnormal, the indicator is red.
+    - If the connection is normal, the indicator is green.
 
-1.  View of connection status indicator: After successful publication of the above configuration, view the communication status. If the connection is abnormal, the indicator will be red; if the connection is normal, the indicator will be green.
+    The following screenshot shows that the configuration is successfully published. However, the connection status is abnormal.
 
-    **Note:** In the case of abnormal connection, the indicator light of connection 1 will be red.
     ![](media/module3_add_device_success3.png)
 
-    **Note:** In the case of normal connection, the indicator light of connection 1
-will be green.
-
-2.  View data with communication test: Communication test can be used to further analyze the connection conditions. Click **Test** to open the communication test functional page, as shown in the figure below:
+2.  Debug the connection. Click **Test** to further analyze the connection issue as shown in the figure below:
 
     ![](media/module3_test1.png)
 
+3.  Click **View** to view the data collected.
+
+    *Note: You can view the data only after the **Start** button is clicked.*
+
     ![](media/module3_test_start.png)
 
-    **Note:** This function can only be used after **Start** button is clicked. View the **Data** page to see if the data have been received, and check consistency between the data received here and the data source (note that the data here are originally collected data without calculation). If the data are not correct, it may be necessary to adjust the settings in config.sys and point.csv configurations files in the device template (for detailed settings in config.sys and point.csv in modbus protocol, see the annex).
+    - Click the **Data** tab to see whether the data have been received, and check consistency between the data received here and the data source (note that the data here are original data without calculation).
 
-    **Note:** View **Communication Message** page to check if he message has been received, and analyze if the message is reasonable.
+    If the data are not correct, you might need to adjust the settings in the `config.sys` and `point.csv` configuration files in the device template screen (for detailed settings in config.sys and point.csv in modbus protocol, see the annex).
 
-    **Note:** View **Log** page to analyze the log and check if there is any abnormal log.
+    - Click the **Datagram** tab to check if he message has been received, and analyze if the message is reasonable.
 
-3.  Test with communication test console function: A few common commands are fixed in the console, including Ping, local IP inquiry, Telnet, and TCPconnection viewing (netstat). They are intended to help analyze problems. For example, in this test: **Telnet** command can be used to check if Edge can get access to Port 502 of the local PC normally, as shown in the figure below:
+    - Click the **Log** tab to analyze the log.
+
+    - Click the **Console** tab to perform test actions such as ping, local IP inquiry, telnet, and viewing TCPconnection  (netstat). These actions are intended to help analyze problems.
+
+    In this test: **Telnet** command can be used to check if Edge can get access to Port 502 of the local PC normally, as shown in the figure below:
+
     ![](media/module3_test_eg.png)
 
-## Check the final data with data preview tool
 
-**Procedure:**
+## Step 7: Preview the data
 
-The original device data values collected with Edge can be viewed in
-communication test. The data will be finally mapped to the model point (may be simple one-to-one mapping, or a complicated mapping after calculation with certain formulas). The real-time and history data mapped to the model can be viewed in the **Asset Management \> Data Preview** menu.
+The original device data values aquired through Edge can be viewed in the connection test. The data aquisition points are mapped to the model points (ca  be simple one-to-one mapping, or complex mapping after calculation with certain formulas).
 
-1.  View real-time data:
+You can view the real-time and historical data mapped to the model through the **Asset Management > Data Preview** menu.
 
-    ![](media/module3_data_preview.png)
+*Note: If the model point is based on calculation from original data of the aquisition point, the data shown here is the value after calculation.*
 
-    **Note:** Find the corresponding asset node (can be a site or a device) in the left asset tree list. The final real-time data about asset acquisition can be viewed in the right and compared with data sources. Note that the data here are final values after calculations with different formulas.
-    ![](media/module3_data_preview_comm_traffic.png)
+1. View the real-time data.
 
-    **Note:** This test uses Modbus Slave simulator as the data source. Consistency between data source and final data can be checked (ratio difference may exist between data depending on coefficient setting in point.csv).
+   Locate the asset node (can be a site or a device) in the asset tree list as shown in the following figure:
 
-2.  View history data
+   ![](media/module3_data_preview.png)
 
-    Click the ![](media/module3_search_button.png) icon in history data field to view history data of the current model point.
+   The real-time data of the acquisition points can be viewed in the right panel.
 
-    **Note:** The history data can be viewed graphically under the trend diagram page.
+   ![](media/module3_data_preview_comm_traffic.png)
 
-    The history data can also be viewed as datasheets. Export of history data is
-also possible, as shown in the figure below:
-    ![](media/module3_data_preview_check.png)
-    ![](media/module3_data_preview_check_comm_traffic.png)
+   *Note: This test uses Modbus Slave simulator as the data source. Consistency between data source and final data can be checked (ratio difference may exist between data depending on coefficient setting in the `point.csv` file).*
+
+2. View the historical data.
+
+   Click the ![](media/module3_search_button.png) icon of the data record to view historical data of the current model point.
+
+   - You can view the graphical trend that shows the point value dynamics in the **Trendmap** tab.
+
+   - You can also view the history data as datasheets through the **Datasheet** tab. In this tab, you can export the history data.
+
+   ![](media/module3_data_preview_check.png)
+
+   ![](media/module3_data_preview_check_comm_traffic.png)

@@ -1,96 +1,67 @@
-# Data: Instructions on Experiment
+# Data processing learning overview
 
 As the functions for data processing to be introduced in the following
-experiments are closely connected with one another, we designed a complete
-workflow for you to experience, which may help you better understand the
-relevant concepts and operations of offline data processing.
+experiments are closely connected with one another, we designed a complete workflow, which will help you better understand the
+relevant concepts and tasks of offline data processing.
 
-This section aims to help you:
+This overview section aims to help you:
 
--   Gain knowledge on the overall process of data processing;
-
--   Set a clear overall goal;
-
--   Disassemble the overall goal into the easy-to-execute subtasks;
+-   Understand the overall process of data processing;
+-   Gain a clear overall goal for the subsequent learning modules;
+-   Help you disassemble the overall goal into several easy-to-achieve subtasks;
 
 ## Summary of data processing
 
-The following experiment modules will deal with handling the offline data stored
-on the platform. The common process is as follows:
+The following learning modules deals with handling the offline data stored on the platform. The common process is as follows:
 
-1.  You are required to perform a preliminary analysis on the data stored on the
-    platform (e.g., the data accessed through Edge) in the data explorer tools
-    so as to learn what data you have at hand and in what forms they are stored
-    and their characteristics, etc.;
-
-2.  You are required, based on a specific business, to determine the design of a
-    data warehouse (the layers required to be made and the data required for
-    each layer, etc.);
-
-3.  You are required to create the corresponding hive forms in the data explorer
-    tools;
-
-4.  You are required to develop batch workflows in the data development suite,
-    and to configure the dependencies among the jobs and their respective
-    scheduling cycles;
-
-5.  Based on your business requirements, you may prepare the reports for your
-    business indicators using the BI&Report tools equipped on the platform, or
-    synchronize the data into your business relations database for further
-    treatment and presentation.
+1.  Perform a preliminary analysis on the data stored on the platform (e.g., the device data connected into EnOS through edge) through **Data Explorer** to understand what data you have in hand, in what forms they are stored, and their characteristics, etc.
+2.  Determine how to design your data warehouse based on your business needs (how many layers are needed between the raw data and the final business indicator data, and what data required foreach layer, etc.);
+3.  Create the hive tables through the **Data Explorer** service.
+4.  Develop batch processing workflows through the **Data IDE** service and configure the dependencies among the tasks and their respective  scheduling cycles.
+5.  Based on your business needs, prepare the reports for your business indicators through the built-in **BI&Report** service and synchronize the data into your business relational database for further processing and presentation.
 
 ## Objectives
 
+In the following learning modules, you'll design batch processing workflows against the historical data of your devices, and render the statistical report for the data. The data flow is as shown in the following figure:
+
 ![](media/data_data_flow.png)
 
-*Fig. Data Flows*
+*Figure 1. Data Flows*
 
-In this experiment, 3 electrical meters are simulated with the device simulators
-on the platform, and data is sent continuously to the platform. The data
-simulated by the device simulators is finally saved to the HDFS as a file
-through the real-time stream. The platform supports the management of the data
-in the HDFS through Hive, and the original data is saved in the point records
-table in the Hive.
+In this experiment:
 
-You are required to build a data warehouse in the hive, create a periodic
-offline data processing task flow, generate the business data required by the
-report from the original pointrecords table, and then regularly synchronize the
-data to the relational databases corresponding to the reports. Then, you are
-also required to create a query view from the relational database and generate a
-business report.
+1. Three electrical meters are simulated with the EnOS device simulators, and data is continuously sent to the platform.
+2. The simulated data generated in 1 is saved into the HDFS as a file through the real-time stream.
+3. EnOS supports the management of the data in the HDFS through Hive, and the original data is saved in the pointrecords table in Hive. You are required to build a data warehouse in Hive.
+4. You'll create a periodic batch data processing workflow, generate the business data required by the report from the original pointrecords table
+5. You'll configure a task to regularly synchronize the business data from Hive to the relational databases corresponding to the reports.
+6. You'll create a view from the relational database and generate a business report.
 
-Now it is agreed that the business goal of the experiment is to display some
-statistical indicators of the three electric meters through the platform's
-native BI&Report tool. To be specific:
+Let's suppose that the business goal of the experiment is to show the following statistical indicators of the three electric meters:
 
-1.  The statistics of the total active electricity consumption of the three
+- The statistics of the total active electricity consumption of the three
     meters on the hours of the day;
-
-2.  The statistics of the maximum total active power of each of the three meters
+- The statistics of the maximum total active power of each of the three meters
     during each hour of the day;
-
-3.  The percentage of active power electricity consumption for each of the three
+- The percentage of active power electricity consumption for each of the three
     meters;
 
     ![](media/data_Electricity_consumption_distributed_by_time.png)
 
-    *Fig. Electricity consumption distributed by time*
+    *Figure 2. Electricity consumption distributed by time*
 
     ![](media/data_Maximum_active_power_distributed_by_time.png)
 
-    *Fig. Maximum active power distributed by time*
+    *Figure 3. Maximum active power distributed by time*
 
     ![](media/data_Electricity_consumption_percentage_for_each_meter.png)
 
-    *Fig. Electricity consumption percentage for each meter*
+    *Figure 4. Electricity consumption percentage for each meter*
 
-## Jobs
+## Design of batch processing workflow
 
-1.  Creating a form and the development workflows using the data explorer and
-    task development suite:
+To achieve the planned business goals, the data processing workflow will comprise tasks as shown in the following figure:
 
-    ![](media/data_data_pro_subtask.png)
+![](media/data_data_pro_subtask.png)
 
-    *Fig. Subtasks for data processing*
-
-2.  Preparing business reports with BI&Report tools.
+*Figure 5. Tasks in the data processing workflow*

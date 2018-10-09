@@ -1,7 +1,7 @@
 Tutorial: Application development
 =================================
 
-This is an "entry-level experiment", which minimizes unnecessary coding and can be finished with basic knowledge on Java and SQL languages.
+This is an entry-level experiment, which minimizes unnecessary coding and can be finished with basic knowledge on Java and SQL languages.
 
 Audience
 -------------------
@@ -42,8 +42,8 @@ Prerequisites
 Lab preview
 -------------------
 
-In this experiment, the data of 3 electrical meters for 24 hours are
-pre-recorded. The pre-recorded data is played back through the device simulators
+In this experiment, the data of 3 electrical meters are
+pre-recorded for 24 hours. The pre-recorded data is played back through the device simulators
 on the EnOS platform to simulate the access of the device data.
 
 You are required to build a simple application based on these device data, which
@@ -59,15 +59,15 @@ To reduce the non-core coding work, you are only required to print your results
 on the EnOS console for the display of alerts and device data inquiries, as
 shown in the following figure:
 
-![](media/overview_Acquiring_and_displaying_device_data.png)
+    .. image:: media/overview_Acquiring_and_displaying_device_data.png
 
 *Fig. Acquiring and displaying device data through EnOS APIs by calling the EnOS API testing function*
 
-![](media/overview_Acquiring_device_data_and_printing_API.png)
+.. image:: media/overview_Acquiring_device_data_and_printing_API.png
 
 *Fig. Acquiring device data and printing it onto the console by running Java codes that call the EnOS API*
 
-![](media/overview_Visualizing_business_statistical_indicators.png)
+.. image:: media/overview_Visualizing_business_statistical_indicators.png
 
 *Fig.: Visualizing business statistical indicators by using the EnOS BI & Reports tool*
 
@@ -97,13 +97,12 @@ whole experiment consists of the following steps:
 8.  Displaying business statistical indicators by using the **BI & Reports** function in the EnOS Portal.
 
 
-Table of Contents
+Learning modules
 -------------------
 
 .. toctree::
    :maxdepth: 2
 
-   tutorial_data_overview
    module_1
    module_2
    module_3

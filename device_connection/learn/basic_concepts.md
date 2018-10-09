@@ -58,7 +58,6 @@ name and type.
 
 The following figure shows an example asset tree.
 
-
 ![](media/Basic_concepts_Asset_tree_example.png)
 
 ## Device model
@@ -136,6 +135,7 @@ sub-model for an electric meter basic model and then adding a calculation script
 to the sub-model. Every time new data are received, this calculation condition
 will be triggered to solve the final value. In this case, setting an expression
 in the script will accomplish the target, as shown below:
+
 ```
 output("UA", input("UA_tmp") \* (10 \*\* (input("P") - 4)))
 ```
@@ -233,7 +233,7 @@ formula for a model point.
 
 3.  Select the data collecting point and algorithm.
 
-![](media/Basic_concepts_point_and_algorithm.png)
+    ![](media/Basic_concepts_point_and_algorithm.png)
 
 The following formulas are supported for non-array model points:
 

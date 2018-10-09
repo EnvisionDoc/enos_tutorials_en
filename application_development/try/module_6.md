@@ -1,20 +1,18 @@
-# Module 6: Creating a form and development of offline workflows
+# Module 6: Creating a Hive table and creating workflows
 
-## Creating new Hive tables with Data Explorer
+## Step 1: Creating new Hive tables with Data Explorer
 
-This job aims to create the hive forms used to store the data of the meters and
-sites, as described below:
+This job aims to create the hive forms used to store the data of the meters and sites, as described below:
 
-1.  Enter the **Data Explorer** module and create a new hive worksheet:
+1.  Cick **Data Explorer** from the left navigation tree of EnOS Console, and create a Hive type of note as shown in the following figure:
 
     ![](media/module_6_Create_a_new_worksheet_in_the_Data_Explorer.png)
 
     *Fig. Create a new worksheet in the Data Explorer*
 
-2.  Enter the worksheet and create a new dw_meter_1h form
+2.  Enter the note that you created in step 1 and create the `dw_meter_1h` table.
 
--   The statements for constructing the new form are described as follows as an
-    example( If this form is used, please change the name *dw_meter_1h_demo*，which shall be different from that of the example):
+-   The scripts for constructing the new table are as shown in the following example (If this table name is used, please change the name *dw_meter_1h_demo*，which shall be different from that of the example):
     ```
     %hive
     DROP TABLE IF EXISTS dw_meter_1h_demo;
@@ -31,41 +29,34 @@ sites, as described below:
        FIELDS TERMINATED BY '\\t'
     STORED AS ORC
     ```
-    After completion of constructing the form, queries shall be made to make sure if it is successful, as described as below:
+    After you create the table, you can make a query to the table and make sure the results are successful returned as shown in the figure below:
 
     ![](media/module_6_queries_successful.png)
 
-    <body>
-    <table border="1" cellspacing="0" cellpadding="0" width="692">
+    <table>
       <tr>
-        <td width="692" nowrap colspan="7" valign="top"><strong>hive: dw_meter_1h Sample   Data </strong></td>
+        <th width="132">device_id</th>
+        <th width="132">site_id</th>
+        <th width="144">ts</th>
+        <th width="53">hour</th>
+        <th width="58">energy</th>
+        <th width="88">max_power</th>
+        <th width="84">yyyymmdd</th>
       </tr>
       <tr>
-        <td width="132" nowrap valign="top"><strong>device_id </strong></td>
-        <td width="132" nowrap valign="top"><strong>site_id </strong></td>
-        <td width="144" nowrap valign="top"><strong>ts </strong></td>
-        <td width="53" nowrap valign="top"><strong>hour </strong></td>
-        <td width="58" nowrap valign="top"><strong>energy </strong></td>
-        <td width="88" nowrap valign="top"><strong>max_power </strong></td>
-        <td width="84" nowrap valign="top"><strong>yyyymmdd </strong></td>
-      </tr>
-      <tr>
-        <td width="132" nowrap valign="top">1c7cd59561002000</td>
-        <td width="132" nowrap valign="top">1c7cd5955e000000</td>
-        <td width="144" nowrap valign="top">2018-08-10 00:00:00.0</td>
-        <td width="53" nowrap valign="top">0</td>
-        <td width="58" nowrap valign="top">75.8</td>
-        <td width="88" nowrap valign="top">81</td>
-        <td width="84" nowrap valign="top">20180810</td>
+        <td width="132">1c7cd59561002000</td>
+        <td width="132">1c7cd5955e000000</td>
+        <td width="144">2018-08-10 00:00:00.0</td>
+        <td width="53">0</td>
+        <td width="58">75.8</td>
+        <td width="88">81</td>
+        <td width="84">20180810</td>
       </tr>
     </table>
-    </body>
 
+3.  CREATE the `dw_site_1h` table.
 
-3.  Creating new dw_site_1h forms
-
--   The statements for constructing the new form are described as follows as an
-    example( If this form is used, please change the name dw_meter_1h_demo，which shall be different from that of the example):
+-   The scripts for creating the table are shown in the following    example (If this table name is used, please change the name dw_meter_1h_demo，which shall be different from that of the example):
     ```
     DROP TABLE IF EXISTS dw_site_1h_demo;
     CREATE TABLE dw_site_1h_demo(
@@ -81,47 +72,38 @@ sites, as described below:
     STORED AS ORC
     ```
 
-    <body>
-    <table border="1" cellspacing="0" cellpadding="0" width="692">
+    <table>
       <tr>
-        <td width="692" nowrap colspan="6" valign="top"><p><strong>hive:   dw_site_1h Sample Data </strong></p></td>
+        <th width="161"><p>site_id</p></th>
+        <th width="170"><p>ts</p></th>
+        <th width="66"><p>hour</p></th>
+        <th width="64"><p>energy</p></th>
+        <th width="97"><p>max_power</p></th>
+        <th width="135"><p>yyyymmdd</p></th>
       </tr>
       <tr>
-        <td width="161" nowrap valign="top"><p><strong>site_id </strong></p></td>
-        <td width="170" nowrap valign="top"><p><strong>ts </strong></p></td>
-        <td width="66" nowrap valign="top"><p><strong>hour </strong></p></td>
-        <td width="64" nowrap valign="top"><p><strong>energy </strong></p></td>
-        <td width="97" nowrap valign="top"><p><strong>max_power </strong></p></td>
-        <td width="135" nowrap valign="top"><p><strong>yyyymmdd </strong></p></td>
-      </tr>
-      <tr>
-        <td width="161" nowrap valign="top"><p>1c7cd5955e000000</p></td>
-        <td width="170" nowrap valign="top"><p>2018-08-10 00:00:00.0</p></td>
-        <td width="66" nowrap valign="top"><p>0</p></td>
-        <td width="64" nowrap valign="top"><p>638.23</p></td>
-        <td width="97" nowrap valign="top"><p>678</p></td>
-        <td width="135" nowrap valign="top"><p>20180810</p></td>
+        <td width="161"><p>1c7cd5955e000000</p></td>
+        <td width="170"><p>2018-08-10 00:00:00.0</p></td>
+        <td width="66"><p>0</p></td>
+        <td width="64"><p>638.23</p></td>
+        <td width="97"><p>678</p></td>
+        <td width="135"><p>20180810</p></td>
       </tr>
     </table>
-    </body>
 
-## Synchronizing the main data and creating forms with "Job Development"
 
-The job aims to synchronize the main data of the meters to the hive and create
-the corresponding hive form so as to obtain the descriptions of the electrical
+## Step 2: Synchronizing the master data and creating table with Task Designer
+
+The task aims to synchronize the master data of the meters to the hive table that you created in Step 1 and create a corresponding hive table so as to obtain the descriptions of the electrical
 meters (Name), as described as below:
 
-1.  Enter **Data Development Suite \> Job Development**, double click "Main Data
-    Synchronization V0.1.2", where the roles and application of the SDK are
-    detailed, as described below:
+1.  Click **Data IDE > Task Designer**, double click **SYNC_MDM** version **V0.1.2**. The Instructions of the SDK are shown as in the following figure:
 
     ![](media/module_6_Instructions_on_the_SDK_for_Main_Data_Synchronization.png)
 
     *Fig. Instructions on the SDK for Main Data Synchronization*
 
-2.  Click **Apply this method**, input the name of your program (the suffix "demo"
-    may be changed to your program name, which shall not be identical with that
-    of other programs), select **/Workflow/Practice**, as described below:
+2.  Review the instructions and click **Apply this SDK**, enter the name of your task (change the suffix "demo" to your own task name, ensure that the name is not identical with other tasks), select **/Workflow/Practice**, as described below:
 
     ![](media/module_6_select_WorkflowPractice.png)
 
@@ -130,6 +112,7 @@ meters (Name), as described as below:
     ![](media/module_6_job_parameters.png)
 
     The parameters are as follows:
+
     ```
     mdmID=1c750ed055000000
     path=/user/db_owner_enos_training/cim
@@ -137,7 +120,7 @@ meters (Name), as described as below:
     overwrite=true
     ```
 
-4.  Publish and pre-run the job.
+4.  Click **Publish** to publish the workflow and click **Pre-run** to synchronize the master data.
 
 ## Synchronize the form structures with "Job Development"
 
@@ -223,6 +206,7 @@ records arising from regular synchronization.
     ```
     desc dw_meter_1h_demo
     ```
+
     ![](media/module_6_Adding_main_keys_to_the_form_dw_meter_1h_demo.png)
 
     *Fig. Adding main keys to the form dw_meter_1h_demo*

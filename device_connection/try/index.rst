@@ -27,7 +27,7 @@ https://github.com/EnvisionIot/enos_tutorials
 
 
 
-Table of Contents
+Learning modules
 -------------------
 
 .. toctree::
