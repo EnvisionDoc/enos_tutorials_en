@@ -35,7 +35,7 @@ Select the **EnOS_Lab_Domain** tab under **Event Management > Event Contents**, 
 
 In this experiment, 4 events are pre-defined, as shown the in following figure:
 
-![Event contents](media/module_3_An_Example_of_alert_Contents.png)
+![Event contents](media/module_3_event_contents.png)
 
 *Fig. An Example of event Contents*
 

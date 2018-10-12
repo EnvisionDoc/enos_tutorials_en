@@ -29,13 +29,9 @@ In the Modbus protocol, the data aquisition point is located through the registe
 
     ![](media/module2_Setup_Slave_Definition.png)
 
-
-
 3.  Enter the following simulated data collecting points.
 
-
     ![](media/module2_mbslave1.png)
-
 
     <table border="1" cellspacing="0" cellpadding="0">
       <tr>

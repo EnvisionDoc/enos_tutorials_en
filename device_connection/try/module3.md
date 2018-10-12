@@ -39,19 +39,15 @@ Under the **Asset Management > Asset Tree** menu, attach the site created during
     ![](media/module3_device_template.png)
 
 2.  Fill and save the basic template information, as shown in the figure below.
-
     - **Domain**: EnOS_Lab_Domain
-
     - **Device Type**: Meter
 
-
     ![](media/module3_create_device_template.png)
-
 
     ![](media/module3_device_template_meter.png)
 
 
-3.  Click  ![](media/module3_edit_new_device_template.png) Edit the new device template;
+3.  Click ![](media/module3_edit_new_device_template.png) Edit the new device template;
 
 4.  Select the protocol for the template. In this lab, the edge uses ModbusRTU protocol to communicate with EnOS cloud, and Edge acts as the TCP Client and the simulated device acts as the TCP Server.
     - **Protocol Type**: ModbusRTU

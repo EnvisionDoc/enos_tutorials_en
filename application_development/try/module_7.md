@@ -1,27 +1,31 @@
-# Module 7: Develop cyclical workflows with "Job Development"
+# Module 7: Develop periodical workflows with Task Designer
 
-The job aims to develop the jobs performed on daily basis, i.e., daily
-synchronization of the main data to the report databases, cyclically fetching
-data from the original pointrecords forms to generate the data required for
+The module aims to develop the tasks performed on daily basis, i.e., daily
+synchronization of the master data to the report databases, periodically fetching
+data from the original point record forms to generate the data required for
 business goals and synchronizing them to the report databases.
 
 ![](media/module_7_Cyclical_Workflows.png)
 
-*Fig. Cyclical Workflows*
+*Fig. periodical Workflows*
 
-## Creating mdm_sync jobS
+## Before you start
 
-The job aims to synchronize the main data cyclically, as described below:
+Create `mdm_sync` and `mdm_hive` resources that will be used in this learning module.
 
-### Creating cyclical workflows
+## Step 1: Creating the mdm_sync task
 
-Enter **Data IDE \> Task Designer** and create a new workflow,
+The job aims to synchronize the master data periodically, as described below:
+
+### Creating a periodical workflow
+
+Enter **Data IDE > Task Designer** and create a new workflow,
 as described below: ( Please change to the job name of your own when performing
 the experiment):
 
 ![](media/module_7_Creating_cyclical_jobs.png)
 
-*Fig. Creating cyclical jobs*
+*Fig. Creating periodical jobs*
 
 ### Creating and configuring the shell nodes
 
@@ -34,18 +38,18 @@ below:
 
 ![](media/module_7_shellsave.png)
 
-**Command**: *sh run.sh --mdmID=\${mdmID} --path=\${path} --domain=\${domain}*
+- **Command**:
 
-**Resources**：*mdm_sync*
+  `sh run.sh --mdmID=${mdmID} --path=${path} --domain=${domain}`
 
-**ResourceVersion**：*V1.0.0*
+- **Resources**：mdm_sync
+- **ResourceVersion**：V1.0.0
 
-After saving the configuration, return to the workflow panel, click **Publish**
-and save all the configurations made.
+After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-## Creating mdm_hive jobs
+## Step 2: Creating the mdm_hive task
 
-The job aims to create hive forms and store the synchronized main data, as
+The task aims to create hive forms and store the synchronized master data, as
 described below:
 
 ![](media/module_7_Creating_a_shell_node.png)
@@ -56,18 +60,15 @@ described below:
 
 *Fig. Configuring the shell node*
 
-**Command**: *sh run.sh --overwrite=\${overwrite} --path=\${path}*
+- **Command**: `sh run.sh --overwrite=${overwrite} --path=${path}`
+- **Resources**：mdm_hive
+- **ResourceVersion**：V1.0.0
 
-**Resources**：*mdm_hive*
+After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-**ResourceVersion**：*V1.0.0*
+## Step 3: Creating meter_1h_demo tasks
 
-After saving the configuration, return to the workflow panel, click **Publish**
-and save all the configurations made.
-
-## Creating meter_1h_demo jobs
-
-The job aims to acquire the data at the hours from cyclically from the
+The job aims to acquire the data at the hours from periodically from the
 pointrecords forms, as described below:
 
 ### Writing the shell scripts
@@ -82,49 +83,50 @@ fields.
 
 An example of the scripts are shown here, the name of which shall be changed when it is being used:
 
+```
     queue="root.default"
     while getopts:s:e:q:h OPTION
       do
 
-    case \$OPTION in
+    case $OPTION in
 
-    s)start_date=\$OPTARG;;
+    s)start_date=$OPTARG;;
 
-    e)end_date=\$OPTARG;;
+    e)end_date=$OPTARG;;
 
-    q)queue=\$OPTARG;;
+    q)queue=$OPTARG;;
 
-    h)echo "sh dw_meter_1m_demo.sh -s \<yyyymmdd notnull\> -e \<yyyymmdd notnull\> -q \<queue root.default\>"&&exit 0;;
+    h)echo "sh dw_meter_1m_demo.sh -s <yyyymmdd notnull> -e <yyyymmdd notnull> -q <queue root.default>"&&exit 0;;
 
       esac
 
         done
 
-    while [[ \$start_date -le \$end_date ]]
+    while [[ $start_date -le $end_date ]]
 
     do
 
-    next_date=\`date -d "+1 day \$start_date" +%Y%m%d\`
+    next_date=`date -d "+1 day $start_date" +%Y%m%d`
 
-    prev_date=\`date -d "-1 day \$start_date" +%Y%m%d\`
+    prev_date=`date -d "-1 day $start_date" +%Y%m%d`
 
-    sql="set mapreduce.job.queuename=\$queue;
+    sql="set mapreduce.job.queuename=$queue;
 
-    insert overwrite table dw_meter_1h_demo partition(yyyymmdd=\$start_date)
+    insert overwrite table dw_meter_1h_demo partition(yyyymmdd=$start_date)
 
-    select device_id, site_id, floor(time/3600000)\*3600000 as ts, (cast(hh as int)+8)%24 as hour,
+    select device_id, site_id, floor(time/3600000)*3600000 as ts, (cast(hh as int)+8)%24 as hour,
 
     max(case when point='EMT.Wp' then value end) - min(case when point='EMT.Wp' then value end) as energy,
 
     max(case when point='EMT.P' then value end) as max_power from pointrecords
 
-    where (yyyymmdd=\$prev_date and hh \>= '16') or (yyyymmdd=\$start_date and hh \< '16') group by device_id, site_id, floor(time/3600000)\*3600000, hh"
+    where (yyyymmdd=$prev_date and hh >= '16') or (yyyymmdd=$start_date and hh < '16') group by device_id, site_id, floor(time/3600000)*3600000, hh"
 
-    echo "\$sql" \> tmp_hql
+    echo "$sql" > tmp_hql
 
     dwexec -f tmp_hql
 
-    if [ \$? -ne 0 ];then
+    if [ $? -ne 0 ];then
 
     echo "----------execute sql failed!!!--------------"
 
@@ -132,17 +134,18 @@ An example of the scripts are shown here, the name of which shall be changed whe
 
     fi
 
-    start_date=\$next_date
+    start_date=$next_date
 
     done
 
     echo "execute task successfully"
+```
 
 ![](media/module_7_execute_task_successfully.png)
 
-### Creating a new resource to upload the shall scripts
+### Creating a new resource to upload the shell scripts
 
-Enter **Data IDE\> Resource Manager**, create a new resource and
+Enter **Data IDE> Resource Manager**, create a new resource and
 upload the shell scripts:
 
 ![](media/module_7_Create_the_resource_dw_meter_1h_demo.png)
@@ -159,7 +162,7 @@ upload the shell scripts:
 
 ### Creating a shell node and linking it to the resources
 
-Enter **Data IDE**\> **Task Designer**, create a shell node and configure it:
+Enter **Data IDE**> **Task Designer**, create a shell node and configure it:
 
 ![](media/module_7_Creating_a_shell_node_2.png)
 
@@ -169,16 +172,13 @@ Enter **Data IDE**\> **Task Designer**, create a shell node and configure it:
 
 *Fig. Related resources*
 
-**Command**：*sh dw_meter_1h_demo.sh -s \${start_date} -e \${end_date} -q \${queue}*
-
-**Resources**：*dw_meter_1h_demo*
-
-**ResourceVersion**：*V1.0.0*
+- **Command**：`sh dw_meter_1h_demo.sh -s ${start_date} -e ${end_date} -q ${queue}`
+- **Resources**：dw_meter_1h_demo
+- **ResourceVersion**：V1.0.0
 
 After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-## Create the synchronization job for meter_1h_demo reports
-
+## Step 4: Create the synchronization job for meter_1h_demo reports
 
 The job aims to synchronize the dw_meter_1h_demo form in the hive to the report
 relational databases, as described below:
@@ -191,21 +191,19 @@ relational databases, as described below:
 
 ![](media/module_7_meter_1h_hive2.png)
 
-**Command**:
+- **Command**:
+  ```
+    wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_meter_1h_demo -E TARGET_TBALE=dw_meter_1h_demo -E SOURCE_QUEUE=${queue} -E START_DATE=${start_date} -E END_DATE=${end_date}
+    ```
 
-    wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_meter_1h_demo -E
-    TARGET_TBALE=dw_meter_1h_demo -E SOURCE_QUEUE=\${queue} -E
-    START_DATE=\${start_date} -E END_DATE=\${end_date}
-
-**Resources**：*HiveDB2ReportDB*
-
-**ResourcesVersion**：*V1.0.1*
+- **Resources**：HiveDB2ReportDB
+- **ResourcesVersion**：V1.0.1
 
 After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-## Creating new site_1h_demo jobs
+## Step 5: Creating new site_1h_demo jobs
 
-The job aims to acquire the site data at the hours from the pointrecords forms cyclically, as described below:
+The job aims to acquire the site data at the hours from the pointrecords forms periodically, as described below:
 
 ### Writing the shell scripts
 
@@ -216,42 +214,42 @@ calculating the active power of all the devices at the hours (energy), the sum
 of the maximum powers at the hours (max_power), and taking out such fields as
 corresponding site_ids and timestamps, etc.
 
-An example of the scripts are shown here, the name of which shall be changed
-when it is being used:
+An example of the scripts are shown here, the name of which shall be changed when it is being used:
 
+```
     queue="root.default"
 
     while getopts:s:e:q:h OPTION
 
     do
 
-    case \$OPTION in
+    case $OPTION in
 
-    s)start_date=\$OPTARG;;
+    s)start_date=$OPTARG;;
 
-    e)end_date=\$OPTARG;;
+    e)end_date=$OPTARG;;
 
-    q)queue=\$OPTARG;;
+    q)queue=$OPTARG;;
 
-    h)echo "sh dw_site_1m_demo.sh -s \<yyyymmdd notnull\> -e \<yyyymmdd notnull\> -q \<queue root.default\>"&&exit 0;;
+    h)echo "sh dw_site_1m_demo.sh -s <yyyymmdd notnull> -e <yyyymmdd notnull> -q <queue root.default>"&&exit 0;;
 
     esac
 
     done
 
-    while [[ \$start_date -le \$end_date ]]
+    while [[ $start_date -le $end_date ]]
 
     do
 
-    next_date=\`date -d "+1 day \$start_date" +%Y%m%d\`
+    next_date=`date -d "+1 day $start_date" +%Y%m%d`
 
-    prev_date=\`date -d "-1 day \$start_date" +%Y%m%d\`
+    prev_date=`date -d "-1 day $start_date" +%Y%m%d`
 
-    sql="set mapreduce.job.queuename=\$queue;
+    sql="set mapreduce.job.queuename=$queue;
 
-    insert overwrite table dw_site_1h_demo partition(yyyymmdd=\$start_date)
+    insert overwrite table dw_site_1h_demo partition(yyyymmdd=$start_date)
 
-    select site_id, floor(time/3600000)\*3600000 as ts, (cast(hh as int)+8)%24 as hour,
+    select site_id, floor(time/3600000)*3600000 as ts, (cast(hh as int)+8)%24 as hour,
 
     max(energy) - min(energy) as energy,
 
@@ -267,16 +265,16 @@ when it is being used:
 
     max(case when point='EMT.P' then value end) as power
 
-    from pointrecords where (yyyymmdd=\$prev_date and hh \>= '16') or (yyyymmdd=\$start_date and hh \< '16') group by site_id, device_id, time, hh
+    from pointrecords where (yyyymmdd=$prev_date and hh >= '16') or (yyyymmdd=$start_date and hh < '16') group by site_id, device_id, time, hh
 
      ) a group by site_id, time, hh ) b group by site_id,
-    floor(time/3600000)\*3600000, hh"
+    floor(time/3600000)*3600000, hh"
 
-    echo "\$sql" \> tmp_hql
+    echo "$sql" > tmp_hql
 
     dwexec -f tmp_hql
 
-    if [ \$? -ne 0 ];then
+    if [ $? -ne 0 ];then
 
     echo "----------execute sql failed!!!--------------"
 
@@ -284,11 +282,12 @@ when it is being used:
 
     fi
 
-    start_date=\$next_date
+    start_date=$next_date
 
     done
 
     echo "execute task successfully"
+```
 
 ![](media/module_7_execute_task_successfully_2.png)
 
@@ -316,7 +315,7 @@ when it is being used:
 
 *Fig. Related resources*
 
-**Command**：*sh dw_site_1h_demo.sh -s \${start_date} -e \${end_date} -q \${queue}*
+**Command**：*sh dw_site_1h_demo.sh -s ${start_date} -e ${end_date} -q ${queue}*
 
 **Resources**：*dw_site_1h_demo*
 
@@ -324,7 +323,7 @@ when it is being used:
 
 After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-## Creating a synchronization job for site_1h_demo reports
+## Step 6: Creating a synchronization job for site_1h_demo reports
 
 The job aims to synchronize the dw_site_1h_demo form in the hive to the report relational databases, as described below:
 
@@ -339,8 +338,8 @@ The job aims to synchronize the dw_site_1h_demo form in the hive to the report r
 **Command**:
 
     wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_site_1h_demo -E
-    TARGET_TBALE=dw_site_1h_demo -E SOURCE_QUEUE=\${queue} -E
-    START_DATE=\${start_date} -E END_DATE=\${end_date}
+    TARGET_TBALE=dw_site_1h_demo -E SOURCE_QUEUE=${queue} -E
+    START_DATE=${start_date} -E END_DATE=${end_date}
 
 **Resources**:*HiveDB2ReportDB*
 
@@ -348,9 +347,9 @@ The job aims to synchronize the dw_site_1h_demo form in the hive to the report r
 
 After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-## Creating a synchronization job for icat_c6_meter_demo reports
+## Step 7: Creating a synchronization job for icat_c6_meter_demo reports
 
-The job aims to synchronize the meter main data to the report relational databases, as described below:
+The job aims to synchronize the meter master data to the report relational databases, as described below:
 
 ### Creating a shell node
 
@@ -360,38 +359,36 @@ The job aims to synchronize the meter main data to the report relational databas
 
 ![](media/module_7_synchronization_job_for_icat_c6_meter_demo_reports2.png)
 
-**Command**:
+- **Command**:
 
+  ```
     wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=icat_c6_meter_demo -E
-    TARGET_TBALE=icat_c6_meter_demo -E SOURCE_QUEUE=\${queue}
+    TARGET_TBALE=icat_c6_meter_demo -E SOURCE_QUEUE=${queue}
+  ```
 
-**Resources**：*HiveDB2ReportDB*
+- **Resources**：HiveDB2ReportDB
+- **ResourcesVersion**：V1.0.1
 
-**ResourcesVersion**：*V1.0.1*
+After saving the configuration, return to the workflow panel, click **Publish** and save all the configurations made.
 
-After saving the configuration, return to the workflow panel, click **Publish**
-and save all the configurations made.
-
-## Configuring the calling parameters and variables
+## Step 8: Configuring the calling parameters and variables
 
 The job aims to configure the calling parameters for the whole workflow (when to
 run daily), and define the variables used in the job, as described below:
 
 ![](media/module_7_calling_parameters_and_variables.png)
 
-**Scheduling interval**: *Day*
-
-**Specific time**: *01:00 ( To be noted that the time here is utc+8)*
-
-**Scheduling status**: *Do not check "Pause"*
+- **Scheduling interval**: Day
+- **Specific time**: 01:00 ( To be noted that the time here is utc+8)
+- **Scheduling status**: Do not check "Pause"
 
 ![](media/module_7_calling_parameters_and_variables2.png)
 
 Parameters:
+```
+    start_date=${cal_dt8}
 
-    start_date=\${cal_dt8}
-
-    end_date=\${cal_dt8}
+    end_date=${cal_dt8}
 
     queue=root.training
 
@@ -402,8 +399,9 @@ Parameters:
     domain=198
 
     overwrite=true
+```    
 
-## Pre-run the job manually and observe the job status
+## Step 9: Pre-run the job manually and observe the job status
 
 Scheduled on daily basis, the workflow is launched at 1:00 am and the data of
 the previous day is calculated. To facilitate debugging, the job may be started
@@ -413,9 +411,9 @@ This session of the experiment aims to enable you to learn pre-run the jobs
 manually, to observe their running statuses and view the relevant logs with the
 job monitoring functions.
 
-1.  Select your workflow in **Data IDE Suite\> Task Designer**, then click **Pre-run** .
+1.  Select your workflow in **Data IDE Suite> Task Designer**, then click **Pre-run** .
 
-2.  Find the example workflow you pre-ran just now in Data Operation and **Manual instance \> Pre-run**, as described below:
+2.  Find the example workflow you pre-ran just now in Data Operation and **Manual instance > Pre-run**, as described below:
 
     ![](media/module_7_View_the_pre_run_example.png)
 
