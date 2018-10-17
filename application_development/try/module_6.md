@@ -60,7 +60,8 @@ This task aims to create the hive forms used to store the data of the meters and
 
 3.  CREATE the `dw_site_1h` table.
 
-    -   The scripts for creating the table are shown in the following    example (If this table name is used, please change the name dw_meter_1h_demo，which shall be different from that of the example):
+    -   The scripts for creating the table are shown in the following example. **Note**: If this table name is used, please change the name `dw_meter_1h_demo`，which shall be different from that of the example:
+
     ```
     DROP TABLE IF EXISTS dw_site_1h_demo;
     CREATE TABLE dw_site_1h_demo(
@@ -102,7 +103,7 @@ This task aims to create the hive forms used to store the data of the meters and
 
 The task aims to synchronize the master data of the meters to the hive table that you created in Step 1 and create a corresponding hive table so as to obtain the descriptions of the electrical meters, as described below:
 
-1.  Click **Data IDE > Task Designer**, double click **SYNC_MDM** version **V0.1.1**. The Instructions of the SDK are shown as in the following figure:
+1.  Click **Data IDE > Task Designer**, double click **SYNC_MDM** version **V0.1.2**. The Instructions of the SDK are shown as in the following figure:
 
     ![](media/module_6_Instructions_on_the_SDK_for_Main_Data_Synchronization.png)
 
