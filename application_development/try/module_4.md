@@ -1,51 +1,44 @@
-# Module 4: Querying device data with the API testing tool
+# Module 4: Calling EnOS API
 
-This learning module aims to help you learn how to interact with your data in the EnOS™ Cloud using the EnOS APIs, such as logging in and querying the device properties, real-time and historical data and device alerts.
+This learning module aims to help you learn how to interact with your data in the EnOS™ Cloud by calling EnOS API, such as logging in and querying the device properties, real-time and historical data and device alerts. With EnOS API, you can develop your own applications that consume your resources in the EnOS Cloud.
 
-It doesn't matter even if you are unfamiliar with programming, as you can send requests to the platform automatically through the GUI-based API testing tool and obtain the desired results.
+The sections below describe the major steps that you can follow to calll EnOS API:
 
-## EnOS™ API
+1. Creating an application in EnOS Developer Center
 
-The instructions for the open APIs of EnOS are listed under **API Service > EnOS APIs**, click **API Groups** to expand the APIs in the group, and then click **View details** to view the instructions on a specific API.
+2. Reading EnOS API documentation
 
-On the API details page, you can browse the use scenarios, input and output parameters, example of returned results, and sample java code for the API.
+3. Calling EnOS API
 
-![](media/module_4_List_of_APIs.png)
+4. Testing and deploying the application
 
-*Figure 1. List of APIs*
+## Creating an application
 
-![](media/module_4_Example_of_API_details.png)
+Before calling EnOS API, you need to create an application in EnOS Developer Center. The application can be recognized as your identity as a developer. Log in EnOS Developer Center and go to the **Console** > **Application Management** page to create an application. After the application is created, an APP Key and APP Secret will be assigned to your application, which will be used for authorization and signature check when calling EnOS APIs.
 
-*Figure 2. Example of API details*
+## Reading EnOS API documentation
 
-## Using API testing tools
+The documentation for each API can be found under **API Service** > > **EnOS APIs**. Expand **API Groups** to view APIs in each group, and then click **View details** to view details about an API, including API function, calling method, requesting URL, parameter description, calling sample, and response sample.
 
-Under **API Service > API Test**, you can select the desired API and enter the parameters that are required for invoking this API, click  **Submit Test** and then the results of the API invocation is returned and shown on the right panel.
+.. image:: media/module_4_List_of_APIs.png
+   :alat: List of APIs
 
-![](media/module_4_Example_of_API_testing.png)
+.. image:: media/module_4_Example_of_API_details.png
+   :alt: Example of API documentation
 
-*Figure 3. Example of API testing*
+## Calling EnOS API
 
-In this experiment, we will learn to call the following most frequently used APIs:
+EnOS API service provides an API testing tool for you to test calling APIs and debug errors. On the **API Service** > **API Test** page, select the API group, API name, and calling method, enter the parameters that are required for invoking the API, and click **Submit Test**. The result of the API invocation is returned in JSON format and shown on the right panel.
 
-1.  The `login` API under the `UserService` category (logging in)
-2.  The `getObjectAttributes` API under the `MdmServicecategory` (Querying the properties of a specific device)
-3.  The `getmdmidspoints` interface under the `DomainService` category (Querying the latest real-time data of a specific device)
-4.  The `detailsv2` interface under the `DomainService` category (Querying the historical data of a specific device during a specified period of time)
-5.  The `getAlarmings` interface under the `EventService` category (Querying the events generated on a specific device)
+.. image:: media/module_4_Example_of_API_testing.png
+   :alt: Example of API testing
 
-Instructions on input of the parameters:
+When developing your application, you can either use the official SDK provided by EnOS or assemble HTTP requests manually to call EnOS API.
 
-- **appKey**: Select **EnOS_Lab_Domain—enos_demo_app**，as described below:
+- **Use EnOS API SDK**: Official SDK provided by EnOS, supporting request URL assembling, signature generation, response parsing, and APP performance optimization. You are recommended to use EnOS API SDK. For detailed instructions, see [Using Java SDK to call EnOS API](/docs/enos-tutorials/en/latest/application_development/try/module_5.html).     
 
-    ![](media/module_4_select_EnOS_Lab_Domain.png)
+- **Assemble HTTP requests manually**: Wrap up API service URL, parameters, and signatures manually to assemble HTTP requests to call an API. For detailed instructions, see [EnOS REST API reference](/docs/enos/en/latest/rest_api_reference.html).
 
-    *Figure 4. Select EnOS_Lab_Domain—enos_demo_app as the appKey*
+## Testing and deploying the application
 
-2.  **username** and **password**: enter your EnOS™ Console account name and the password.
-
-3.  The **mdmid** of the device: you can find the **mdmid** of a device by accessing the **Asset Management > Data Preview** menu, clicking the device from the asset tree, and locating the **objectID** as shown in the following figure:
-
-    ![](media/module_4_Query_the_device_mdmid_in_the_data_preview_tools.png)
-
-    *Figure 5. Query the device mdmid in the data preview tool*
+EnOS provides a log tool to help you monitor the running status of your application. You can search for historical API calling requests by request ID, API name, or other keywords. When the application development and test is completed, you can deploy it online.

@@ -1,21 +1,15 @@
 EnOS Tutorials
-===========================
+================
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Back to
-
-   EnOS fundamental <https://docs.envisioniot.com/docs/enos/en/latest/overview/enos_introduction.html>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Device connection
+   :maxdepth: 2
+   :caption: Device management
 
    device_connection/try/index
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Application development
 
    application_development/try/index
@@ -23,6 +17,6 @@ EnOS Tutorials
 Downloads
 """"""""
     pdf_ htmlzip_ epub_
-.. _pdf: https://docs.envisioniot.com/projects/enos-tutorials/downloads/pdf/latest/
-.. _htmlzip: https://docs.envisioniot.com/projects/enos-tutorials/downloads/htmlzip/latest/
-.. _epub: https://docs.envisioniot.com/projects/enos-tutorials/downloads/epub/latest/
+.. _pdf: https://www.envisioniot.com/projects/enos-tutorials/downloads/pdf/1.0/
+.. _htmlzip: https://www.envisioniot.com/projects/enos-tutorials/downloads/htmlzip/1.0/
+.. _epub: https://www.envisioniot.com/projects/enos-tutorials/downloads/epub/1.0/

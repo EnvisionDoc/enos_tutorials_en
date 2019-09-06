@@ -5,4 +5,6 @@ subsequent registration on the EnOS cloud.
 
 This module requires only the serial number of the cloud edge. Device registration is performed during EnOS™ cloud configuration.
 
-![](media/module1_SN.png)
+.. image:: media/module1_SN.png
+
+<!--end-->

@@ -118,7 +118,10 @@ html_theme = 'sphinx_enos_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    'copyright_en': '© 2019 Envision Digital. All Rights Reserved.',
+
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -227,21 +230,18 @@ latex_elements = {
         \begin{titlepage}
             \AddToShipoutPictureBG*{\includegraphics[width=\paperwidth,height=\paperheight]{bg.png}}
 
-            \vspace*{15mm} %%% * is used to give space from top
-            \fontsize{40pt}{\baselineskip}\selectfont \textbf{EnOS}
+            \vspace*{170mm} %%% * is used to give space from top
+            \fontsize{30pt}{\baselineskip}\selectfont \textbf{EnOS}
 
             \vspace{5mm}
 
-            \fontsize{40pt}{\baselineskip}\selectfont \textbf{Tutorials}
+            \fontsize{30pt}{\baselineskip}\selectfont \textbf{Tutorials}
 
             \vspace{5mm}
 
             \huge \textmd{Version}\textbf{ 1.0}
             %% \vfill adds at the bottom
             \vfill
-            \centerline{\fontsize{16pt}{\baselineskip}\selectfont \textbf{Envision Digital}}
-            \vspace{3mm}
-            \centerline{\fontsize{16pt}{\baselineskip}\selectfont \textmd{\today}}
         \end{titlepage}
 
         \clearpage

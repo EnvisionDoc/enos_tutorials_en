@@ -14,28 +14,28 @@ criteria.
 The EnOS™ platform provides the following types of asset nodes to help you
 organize your assets:
 
--   **Site**: indicates a physical site where your devices reside. Site is the
+- **Site**: indicates a physical site where your devices reside. Site is the
     default node in an asset tree. A site can have multiple subordinate
     *projects*.
 
--   **Site group**: a self-defined node in the asset tree that can have multiple
+- **Site group**: a self-defined node in the asset tree that can have multiple
     subordinate sites. For example, a city or state where the sites reside. You
     can define multiple layers of site groups according to your needs.
 
--   **Customer**: the root node of an asset tree. A customer can have multiple
+- **Customer**: the root node of an asset tree. A customer can have multiple
     subordinate sites, multiple site groups, or multiple level of site groups.
 
--   **Project**: a logical organization entity, which indicates a subset of a
+- **Project**: a logical organization entity, which indicates a subset of a
     site. The subset of the site can be of a certain *domain*.
 
--   **Domain**: the common attribute that describes the devices in a project or
+- **Domain**: the common attribute that describes the devices in a project or
     in a device group of a project. For example, when the domain is wind farm,
     the devices in the project or device group are wind mills.
 
--   **Device group**: a logical organization entity, which indicates a subset of
+- **Device group**: a logical organization entity, which indicates a subset of
     a project, this node is optional in an asset.
 
--   **Device**: a device of a certain model that belongs to a certain domain.
+- **Device**: a device of a certain model that belongs to a certain domain.
     For example, a turbine device in the wind farm domain.
 
 Among the types of asset node, projects and devices are created from *model*. A
@@ -47,18 +47,18 @@ model].
 When an asset is created from a model, EnOS™ provides the following types of data
 for the asset:
 
--   Attribute
+- Attribute
 
--   Measurement point
+- Measurement point
 
--   Calculation logic
+- Calculation logic
 
 For assets Other types of asset node often only contain simple information like
 name and type.
 
 The following figure shows an example asset tree.
 
-![](media/Basic_concepts_Asset_tree_example.png)
+.. image:: media/Basic_concepts_Asset_tree_example.png
 
 ## Device model
 
@@ -84,21 +84,21 @@ logics.
 A hierarchical structure also exists among device models. The hierarchical
 structure defined in EnOS™ platform is shown in the figure below:
 
-![](media/Basic_concepts_A_hierarchical_structure.png)
+.. image:: media/Basic_concepts_A_hierarchical_structure.png
 
-**Note:** Before defining a device model, you must create a domain. Site models can then be created under this domain, and multiple device basic models can be crated under the site models. Device sub-models can be created under each device basic model.
+.. note:: Before defining a device model, you must create a domain. Site models can then be created under this domain, and multiple device basic models can be crated under the site models. Device sub-models can be created under each device basic model.
 
 A high-level procedure of managing device models is as follows:
 
-1.  Create a domain
+1. Create a domain
 
-2.  Create site models under the domain.
+2. Create site models under the domain.
 
-3.  Create basic device models for a site model.
+3. Create basic device models for a site model.
 
-4.  Create device sub-models for a basic device model.
+4. Create device sub-models for a basic device model.
 
-**Note:** A sub-model inherits attributes and measurement points of a basic model, which can’t be modified. However, new measurement points and calculation logics can be added to a sub-model.
+.. note:: A sub-model inherits attributes and measurement points of a basic model, which can’t be modified. However, new measurement points and calculation logics can be added to a sub-model.
 
 Based on industrial expertise, the EnOS™ platform has accumulated a number of common models available for use, you can also define your ownmodels.
 
@@ -178,26 +178,25 @@ definition of custom device templates.
 
 A device template consists of the following information:
 
-**Basic information**
+#### Basic information
 
 You can define the template name, corresponding device brand, model, version,
 and other information for re-use.
 
-**Communication protocol and configuration files**
+#### Communication protocol and configuration files
 
 EnOS™ platform provides a rich communication protocol base and supports most
 common standard communication protocols. You can browse platform communication
 protocol base and select suitable communication protocol programs.
 
-. Use the following configuration files for configuring the communication
+Use the following configuration files for configuring the communication
 protocol:
 
--   Use the config.sys file to configure the communication protocol related
-    parameters.
+- Use the config.sys file to configure the communication protocol related parameters.
 
--   Use the point.csv file to configure the device collection point table.
+- Use the point.csv file to configure the device collection point table.
 
-**Mapping**
+#### Mapping
 
 You can select a device model base on which to create the device template, and
 set mapping between a specific device measurement points and a model standard
@@ -209,7 +208,7 @@ configured through formulas.
 The following screenshot shows a list of device templates:
 
 
- ![](media/Basic_concepts_mapping.png)
+.. image:: media/Basic_concepts_mapping.png
 
 ### 3. Mapping formula in the device template
 
@@ -223,17 +222,15 @@ formula for a model point.
 
 #### Procedure:
 
-1.  In the **Model Selection and Mappings** table of the device template, click
-    the edit icon for the model point that you want to mapping data collection
-    point for.
+1. In the **Model Selection and Mappings** table of the device template, click the edit icon for the model point that you want to mapping data collection point for.
 
-    ![](media/Basic_concepts_mapping_edit.png)
+   .. image:: media/Basic_concepts_mapping_edit.png
 
-2.  In the **Select Point** window, click **Add Formula**.
+2. In the **Select Point** window, click **Add Formula**.
 
-3.  Select the data collecting point and algorithm.
+3. Select the data collecting point and algorithm.
 
-    ![](media/Basic_concepts_point_and_algorithm.png)
+   .. image:: media/Basic_concepts_point_and_algorithm.png
 
 The following formulas are supported for non-array model points:
 
@@ -256,59 +253,59 @@ The following formulas are supported for non-array model points:
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
 </script>
-<table border="1" cellspacing="0" cellpadding="0" width="100%">
+<table>
   <tr>
-    <td width="24%" valign="top"><p align="center"><strong>Formula name</strong></p ></td>
-    <td width="75%" valign="top"><p><strong>Description</strong></p ></td>
+    <td>Formula name</td>
+    <td>Description</td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">NO_MAPPING</p ></td>
-    <td width="75%" valign="top"><p align="left">NO_MAPPING: no mapping for this model point; </p ></td>
+    <td>NO_MAPPING</td>
+    <td>NO_MAPPING: no mapping for this model point; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">INVALID</p ></td>
-    <td width="75%" valign="top"><p align="left">INVALID: No   mapping is provided for this model point (no longer used, NO_MAPPING will be   used); </p ></td>
+    <td>INVALID</td>
+    <td>INVALID: No mapping is provided for this model point (no longer used, NO_MAPPING will be used); </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">EQUAL</p ></td>
-    <td width="75%" valign="top"><p align="left">EQUAL: The   value of this model point is equal to the mapped point, i.e. y=x; </p ></td>
+    <td>EQUAL</td>
+    <td>EQUAL: The value of this model point is equal to the mapped point, i.e. y=x; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">SUM</p ></td>
-    <td width="75%" valign="top"><p align="left">SUM: all   collection points added to this mapping, i.e. $$y = \sum_{i = 1}^{n}x_{i}$$ ; </p ></td>
+    <td>SUM</td>
+    <td>SUM: all collection points added to this mapping, i.e. $$y = \sum_{i = 1}^{n}x_{i}$$ ; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">PRODUCT</p ></td>
-    <td width="75%" valign="top"><p align="left">PRODUCT:   multiplication of all collection points added to this mapping, and multiplied   by a distributable coefficient a (i.e. &ldquo;operand&rdquo;), i.e. $$y = a\prod_{i = 1}^{n}x_{i}$$ ; </p ></td>
+    <td>PRODUCT</td>
+    <td>PRODUCT: multiplication of all collection points added to this mapping, and multiplied   by a distributable coefficient a (i.e. &ldquo;operand&rdquo;), i.e. $$y = a\prod_{i = 1}^{n}x_{i}$$ ; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">CROSS_PRODUCT</p ></td>
-    <td width="75%" valign="top"><p align="left">CROSS_PRODUCT:   cross production of all collection points added to this mapping, and   multiplied by a distributable coefficient a (i.e. &ldquo;operand&rdquo; parameter). Note   that the sequence in which the collection points are added is very important. $$x_{1}$$   represents the first point added,  $$x_{2}$$ represents the second point added, and so   on, i.e. $$y = a(x_{1}*x_{2} + x_{3}*x_{4} + x_{5}*x_{6} + \ldots)$$ ; </p ></td>
+    <td>CROSS_PRODUCT</td>
+    <td>CROSS_PRODUCT: cross production of all collection points added to this mapping, and multiplied by a distributable coefficient a (i.e. &ldquo;operand&rdquo; parameter). Note   that the sequence in which the collection points are added is very important. $$x_{1}$$   represents the first point added,  $$x_{2}$$ represents the second point added, and so   on, i.e. $$y = a(x_{1}*x_{2} + x_{3}*x_{4} + x_{5}*x_{6} + \ldots)$$ ; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">RATIO</p ></td>
-    <td width="75%" valign="top"><p align="left">RATIO: Ratio   of the two collection points added to this mapping. Note that the sequence in   which the collection points are added is very important, i.e. $$y = x_{1}/x_{2}$$ ; </p ></td>
+    <td>RATIO</td>
+    <td>RATIO: Ratio of the two collection points added to this mapping. Note that the sequence in   which the collection points are added is very important, i.e. $$y = x_{1}/x_{2}$$ ; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">LOGICAL_OR</p ></td>
-    <td width="75%" valign="top"><p align="left">LOGICAL_OR:   Logical OR operation for the digital input DI points added to this mapping,   i.e. $$y = {(x}_{1}\left| x_{2} \right|x_{3}\left| x_{4} \right|x_{5}\left| x_{6} \right|\ldots)$$ ;</p ></td>
+    <td>LOGICAL_OR</td>
+    <td>LOGICAL_OR:   Logical OR operation for the digital input DI points added to this mapping,   i.e. $$y = {(x}_{1}\left| x_{2} \right|x_{3}\left| x_{4} \right|x_{5}\left| x_{6} \right|\ldots)$$ ;</td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">RATIO_AGAINST_SUM</p ></td>
-    <td width="75%" valign="top"><p>Special formula: the following calculation is   made on the three collection points added to this mapping, i.e. $$y = x_{1}/(x_{2} + x_{3})$$ ; </p ></td>
+    <td>RATIO_AGAINST_SUM</td>
+    <td>Special formula: the following calculation is   made on the three collection points added to this mapping, i.e. $$y = x_{1}/(x_{2} + x_{3})$$ ; </td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">BIT_N</p ></td>
-    <td width="75%" valign="top"><p>BIT_N: The specified bit of an AI point can be   taken and assigned to a new model point. It includes a parameter &ldquo;operand&rdquo;.   An operand of 0 indicates that the first bit of AI point is taken, and an   operand of 15 indicates that the 16 bit of AI point is taken.</p ></td>
+    <td>BIT_N</td>
+    <td>BIT_N: The specified bit of an AI point can be   taken and assigned to a new model point. It includes a parameter &ldquo;operand&rdquo;.   An operand of 0 indicates that the first bit of AI point is taken, and an   operand of 15 indicates that the 16 bit of AI point is taken.</td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">BITS_M_TO_N</p ></td>
-    <td width="75%" valign="top"><p>BITS_M_TO_N: Multiple specified consecutive bits   of an AI point can be taken and assigned to a new model point. It includes   two parameters: operand 1 (M: high bit) and operand 2 (N: low bit), M&gt;N.   E.g. if M=7 and N=0, bits 8 to 1 of the collection point are taken and   assigned to the new model point.</p ></td>
+    <td>BITS_M_TO_N</td>
+    <td>BITS_M_TO_N: Multiple specified consecutive bits   of an AI point can be taken and assigned to a new model point. It includes   two parameters: operand 1 (M: high bit) and operand 2 (N: low bit), M&gt;N.   E.g. if M=7 and N=0, bits 8 to 1 of the collection point are taken and   assigned to the new model point.</td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><p align="center">IF_EQUAL</p ></td>
-    <td width="75%" valign="top"><p>Conditional assignment: It includes 3 operands.   Assume operand 1=a, operand 2=b, operand 3=c, then the pseudo code for this   formula is:<br>
-      if x1 == a, then y==b, else y==c. </p ></td>
+    <td>IF_EQUAL</td>
+    <td>Conditional assignment: It includes 3 operands.   Assume operand 1=a, operand 2=b, operand 3=c, then the pseudo code for this   formula is:<br>
+      if x1 == a, then y==b, else y==c. </td>
   </tr>
 </table>
 <div>
@@ -319,43 +316,38 @@ The following formulas are supported for non-array model points:
 
 For array type model points, the following formulas are supported:
 
-<table border="1" cellspacing="0" cellpadding="0" width="100%">
-  <tr>
-    <td width="24%" valign="top"><p align="center"><strong>Formula name</strong></p ></td>
-    <td width="75%" valign="top"><p align="center"><strong>Description</strong></p ></td>
-  </tr>
-  <tr>
-    <td width="24%" valign="top"><p align="center">MULTICHANNEL<strong> </strong></p ></td>
-    <td width="75%" valign="top"><p>MULTICHANNEL: Multiple collection points are   mapped to different elements of an array type model point. Note that the   sequence in which the collection points are added is very important. represents the first point added,  represents the second point added, and so   on, i.e. y is an array: y={y[1], y[2], …, y[n]}, and y[1]=x1, y[2]=x2, …,   y[n]=x[n], n&lt;=32. <strong> </strong></p ></td>
-  </tr>
-  <tr>
-    <td width="24%" valign="top"><p align="center">MULTIBIT</p ></td>
-    <td width="75%" valign="top"><p>MULTIBIT: Conversion of multiple DIs to AIs, i.e.   y is an int32[] type array, y={y[1], y[2], …, y[n]},<br>
-      and,<br>
-      y[1].bit0=x1.bit0,<br>
-      y[1].bit1=x2.bit0,<br>
-      …,<br>
-      y[1].bit31=x32.bit0,<br>
-      y[2].bit0=x33.bit0,<br>
-      y[2].bit1=x34.bit0,<br>
-      …,<br>
-      y[2].bit31=x64.bit0,<br>
-      …,<br>
-      y[n].bit0=.bit0,<br>
-      y[n].bit1=.bit0,<br>
-      …,<br>
-      y[n].bit31=.bit0,<br>
-      ,n&lt;=32.</p ></td>
-  </tr>
-</table>
+.. list-table::
+   :widths: auto
 
-**Conventions:**
+   * - Formula name
+     - Description
+   * - MULTICHANNEL
+     - MULTICHANNEL: Multiple collection points are   mapped to different elements of an array type model point. Note that the   sequence in which the collection points are added is very important. represents the first point added,  represents the second point added, and so   on, i.e. y is an array: y={y[1], y[2], …, y[n]}, and y[1]=x1, y[2]=x2, …,   y[n]=x[n], n&lt;=32.  
+   * - MULTIBIT
+     - MULTIBIT: Conversion of multiple DIs to AIs, i.e. y is an int32[] type   array, y={y[1], y[2], …, y[n]},
+       and,
+       y[1].bit0=x1.bit0,
+       y[1].bit1=x2.bit0,
+       …,
+       y[1].bit31=x32.bit0,
+       y[2].bit0=x33.bit0,
+       y[2].bit1=x34.bit0,
+       …,
+       y[2].bit31=x64.bit0,
+       …,
+       y[n].bit0=.bit0,
+       y[n].bit1=.bit0,
+       …,
+       y[n].bit31=.bit0,
+       ,n&lt;=32.
+
+##### Conventions:
 
 The model point is y (output), and the collection point (input) is
 
-![](media/Basic_concepts_fx.png)
+.. image:: media/Basic_concepts_fx.png
 
-, where i represents the sequence in which the collection points are added.
+where i represents the sequence in which the collection points are added.
 
 
 ## Communication protocol
@@ -372,155 +364,87 @@ With these conventions made available by the platform, you can browse and select
 desired conventions in the device template, which can be used after simple
 configuration, avoiding development or integration of protocols.
 
-![](media/Basic_concepts_protocols_center.png)
+.. image:: media/Basic_concepts_protocols_center.png
 
 ### 2. Some conventions supported by the platform
 
 The following standard conventions are supported:
 
-<body>
-<table border="1" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="184"><p><strong>Standard   convention</strong></p ></td>
-    <td width="184"><p><strong>Remark</strong></p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">ModbusTCP</p ></td>
-    <td width="184"><p align="center">Client/Server</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">ModbusRTU</p ></td>
-    <td width="184"><p align="center">Client/Server</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">IEC60870-5-104</p ></td>
-    <td width="184"><p align="center">Client/Server</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">DNP3.0</p ></td>
-    <td width="184"><p align="center">Client</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">OPC-DA</p ></td>
-    <td width="184"><p align="center">Client only</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">OPC-XML-DA</p ></td>
-    <td width="184"><p align="center">Client only</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">OPC-UA</p ></td>
-    <td width="184"><p align="center">Client only</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">HTTP(s)</p ></td>
-    <td width="184"><p align="center">Web Service</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">RPC</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">DL/T645-1997</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">DL/T645-2007</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-</table>
-</body>
+.. list-table::
+   :widths: auto
+
+   * - Standard convention
+     - Remark
+   * - ModbusTCP
+     - Client/Server
+   * - ModbusRTU
+     - Client/Server
+   * - IEC60870-5-104
+     - Client/Server
+   * - DNP3.0
+     - Client
+   * - OPC-DA
+     - Client only
+   * - OPC-XML-DA
+     - Client only
+   * - OPC-UA
+     - Client only
+   * - HTTP(s)
+     - Web Service
+   * - RPC
+     - --
+   * - DL/T645-1997
+     - --
+   * - DL/T645-2007
+     - --
+
 
 
 Some private conventions supported are given below:
 
-</table>
-<table border="1" cellspacing="0" cellpadding="0" width="374">
-  <tr>
-    <td width="184"><blockquote>
-      <p><strong>Private convention</strong></p >
-    </blockquote></td>
-    <td width="184"><blockquote>
-      <p><strong>Remark</strong></p >
-    </blockquote></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Growatt</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">GoodweTcp</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">GoodweWebService</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">JinlangTCP</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">KSTAR(ksg)</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Lekong</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Omnik</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">TaiDa</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Taoke</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">SunGrow</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Apsystems</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">YunKong</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Trannergy</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Trinasolar</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">Solarman</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">aifu</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">dingyangTcp</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">dingyangTcp-jingfuyuan</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-  <tr>
-    <td width="184"><p align="center">SMA</p ></td>
-    <td width="184"><p align="center">&nbsp;</p ></td>
-  </tr>
-</table>
+.. list-table::
+   :widths: auto
+
+   * - Private convention
+      Remark
+   * - Growatt
+     - --
+   * - GoodweTcp
+     - --
+   * - GoodweWebService
+     - --
+   * - JinlangTCP
+     - --
+   * - KSTAR(ksg)
+     - --
+   * - Lekong
+     - --
+   * - Omnik
+     - --
+   * - TaiDa
+     - --
+   * - Taoke
+     - --
+   * - SunGrow
+     - --
+   * - Apsystems
+     - --
+   * - YunKong
+     - --
+   * - Trannergy
+     - --
+   * - Trinasolar
+     - --
+   * - Solarman
+     - --
+   * - aifu
+     - --
+   * - dingyangTcp
+     - --
+   * - dingyangTcp-jingfuyuan
+     - --
+   * - SMA
+     - --
 
 
 ## API Service
@@ -544,14 +468,14 @@ or deleted relevant resources (including device assets, personnel, applications,
 and privileges) conveniently. In this way, the developers can develop
 applications easily and quickly depending on their business needs.
 
--   Provide the interface for device asset registration, obtainment,
+- Provide the interface for device asset registration, obtainment,
     modification, and deletion.
 
--   Provide the interface for real-time inquiry of device data and history data.
+- Provide the interface for real-time inquiry of device data and history data.
 
--   Provide the interface related to applications.
+- Provide the interface related to applications.
 
--   Provide interface account and privilege related interface.
+- Provide interface account and privilege related interface.
 
 EnOS™ API is also called EEOP interface (Envision EnOS™ Open Platform).
 Applications can get access to asset data connected to the platform via EEOP,
@@ -572,16 +496,16 @@ MQTT protocol to the broker server. The broker forwards the data received from
 the client to cloud kafka. The data can then be used by applications for big
 data analysis and other operations.
 
-![](media/Basic_concepts_mqtt_protocols.png)
+.. image:: media/Basic_concepts_mqtt_protocols.png
 
--   Safe and reliable large-scale message transmission from the devices to the
+- Safe and reliable large-scale message transmission from the devices to the
     cloud and vice versa;
 
--   The broker forwards the data from the client to corresponding subscribers;
+- The broker forwards the data from the client to corresponding subscribers;
 
--   Provide license certification and creation of Thing and strategic themes;
+- Provide license certification and creation of Thing and strategic themes;
 
--   MQTT connection test at client on interface level.
+- MQTT connection test at client on interface level.
 
 ### 2. Applicable scenarios
 
@@ -600,9 +524,7 @@ supports data acquisition, multiple communication conventions, local caching and
 breakpoint continuation. It can either deployed in a cloud machine or a local
 hardware of a specified brand model.
 
-![](media/Basic_concepts_Edge_stru.png)
-
-
+.. image:: media/Basic_concepts_Edge_stru.png
 
 ### 2. Applicable scenarios
 
@@ -618,11 +540,11 @@ Edge will also be selected.
 
 ### 3. Examples of EnOS™ local Edge
 
-![](media/Basic_concepts_local_edge1.png)
+.. image:: media/Basic_concepts_local_edge1.png
 
-![](media/Basic_concepts_local_edge2.png)
+.. image:: media/Basic_concepts_local_edge2.png
 
-![](media/Basic_concepts_local_edge3.png)
+.. image:: media/Basic_concepts_local_edge3.png
 
 ## EnOS™ Portal
 

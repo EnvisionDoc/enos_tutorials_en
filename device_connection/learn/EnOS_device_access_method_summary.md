@@ -1,4 +1,4 @@
-# EnOS™ device access method summary
+# EnOS device access method summary
 
 ## Connection methods
 
@@ -6,35 +6,37 @@
 As shown below, generally the real-time device data can be connected to the EnOS™
 platform in three ways:
 
--   **To be connected via EnOS™ IoT Hub under MQTT protocol (cloud access service).**
-    This requires the device end to support MQTT protocol and is applicable to
-    most new devices of Internet of Things;
+- **To be connected via EnOS™ IoT Hub under MQTT protocol (cloud access service).**
 
--   **To be connected via EnOS™ Edge (Edge can be deployed locally or on the cloud).** This applies to access of most traditional devices and systems;
+  This requires the device end to support MQTT protocol and is applicable to most new devices of Internet of Things;
 
--   **To be connected via EnOS™ Cloud Edge clusters (cloud access service).** This
-    requires the device to be connected to bear a unique ID and uploading under
-    communication protocol. This method is frequently used for photovoltaic
-    device access;
+- **To be connected via EnOS™ Edge (Edge can be deployed locally or on the cloud).**
 
--   **Method 3: Connect through EnOS Cloud Edge clusters (cloud access service).**  
+  This applies to access of most traditional devices and systems;
+
+- **To be connected via EnOS™ Cloud Edge clusters (cloud access service).**
+
+  This requires the device to be connected to bear a unique ID and uploading under communication protocol. This method is frequently used for photovoltaic device access;
+
+- **Method 3: Connect through EnOS Cloud Edge clusters (cloud access service).**  
+
   This requires that the device to be connected has a unique ID and can upload data through supported communication protocols. This method is frequently used for photovoltaic device connection.
 
-    ![](media/device_connection_methods.png)
+.. image:: media/device_connection_methods.png
 
 ## Matrix of scenarios applicable to different access methods
 
 **Matrix of access scenarios:**
 
-![](media/Method_summary_Matrix_of_access_scenarios.png)
+.. image:: media/Method_summary_Matrix_of_access_scenarios.png
 
 **Description of various Edges:**
 
-![](media/Method_summary_Description_of_various_Edges.png)
+.. image:: media/Method_summary_Description_of_various_Edges.png
 
 **List of Edge technical parameters:**
 
-![](media/Method_summary_List_of_Edge_technical_parameters.png)
+.. image:: media/Method_summary_List_of_Edge_technical_parameters.png
 
 ## EnOS™ device access solution example
 
@@ -55,19 +57,19 @@ inverter to be connected, and needs to adapt to various inverters in the market.
 
 Assumptions:
 
-1) Two types of devices need to be connected: converter and electric meter. But
+1. Two types of devices need to be connected: converter and electric meter. But
 the brand and model of inverters and electric meters vary in different projects;
 
-2) There is no third party system in the site, and the device data need to be
+2. There is no third party system in the site, and the device data need to be
 collected directly from EnOS™ cloud;
 
-3) The total number of devices to be connected to a site does not exceed 20, and
+3. The total number of devices to be connected to a site does not exceed 20, and
 each device collects data from 20 points on average, with an average sampling
 cycle of 1 minute;
 
-4) Both inverters and electric meters support standard Modbus-RTU protocols;
+4. Both inverters and electric meters support standard Modbus-RTU protocols;
 
-5) Wired network is available in the site for connection to the public network;
+5. Wired network is available in the site for connection to the public network;
 
 Analysis:
 
@@ -78,13 +80,13 @@ can’t be varied. Therefore, data acquisition needs to be completed with Edge.
 
 [Targeted at applications. All projects reuse this model.]
 
-1) Device modeling (on EnOS™ cloud platform):
-   Creation of photovoltaic domain – creation of photovoltaic site model – creation
-of inverter model, electric meter model;
+1. Device modeling (on EnOS™ cloud platform):
+
+   Creation of photovoltaic domain – creation of photovoltaic site model – creation of inverter model, electric meter model;
 
    [Targeted at projects. Configuration is based on project conditions.]
 
-2) Select an appropriate local Edge and install the software:
+2. Select an appropriate local Edge and install the software:
 
    Since each site has limited number of sampling points and limited sampling frequency, Edge hardware with a low configuration will be OK;
 
@@ -92,26 +94,23 @@ of inverter model, electric meter model;
 
    Purchase an Edge based on the recommended list and install the Edge software;
 
-3) Create a device template (on EnOS™ cloud platform):
+3. Create a device template (on EnOS™ cloud platform):
 
-   **Note:** Assume that there are 20 inverters of the same brand and the same model in the site, and there is a measurement electric meter, a device template for this inverter model and a device template for the electric meter should be created.
+   .. note:: Assume that there are 20 inverters of the same brand and the same model in the site, and there is a measurement electric meter, a device template for this inverter model and a device template for the electric meter should be created.
 
-4) Connect the cloud (on EnOS™ cloud platform): Create cloud assets (model instantiation), Edge, connection configurations;
+4. Connect the cloud (on EnOS™ cloud platform): Create cloud assets (model instantiation), Edge, connection configurations;
 
-5) On-site wiring: 485 bus is used in the site to connect all inverters and electric meters
-serially in a daisy chain, and then connect to a serial port server;
-Connect the serial port server to Edge via wired network, and complete relevant
-configurations;
-Connect Edge to the wired network in the site, and ensure that Edge can be
-connected to the public network;
+5. On-site wiring: 485 bus is used in the site to connect all inverters and electric meters serially in a daisy chain, and then connect to a serial port server;
+   Connect the serial port server to Edge via wired network, and complete relevant configurations;
 
-6) Communication test:
+   Connect Edge to the wired network in the site, and ensure that Edge can be connected to the public network;
+
+6. Communication test:
+
    Publish the cloud configuration to Edge and check communication to ensure all
 device data have been correctly collected by the cloud.
 
-   So far, the device data have been collected by the cloud. The next steps will be
-data acquisition, processing, and analysis via EnOS™ API with developed
-photovoltaic applications.
+   So far, the device data have been collected by the cloud. The next steps will be data acquisition, processing, and analysis via EnOS™ API with developed photovoltaic applications.
 
 ### Scenario 2: Home energy storage battery monitoring application (device connected directly to the cloud via MQTT protocol)
 
@@ -129,13 +128,13 @@ modify batteries.
 
 Assumptions:
 
-1) The battery has its own communication system, and the operator has the R&D
+1. The battery has its own communication system, and the operator has the R&D
 capability to modify external communication system of the batteries;
 
-2) There is no third party system in the site, and the battery device is
+2. There is no third party system in the site, and the battery device is
 connected directly to EnOS™ cloud platform;
 
-3) There is a local wired network with access to public network connected to the
+3. There is a local wired network with access to public network connected to the
 battery communication system;
 
 Analysis:
@@ -149,12 +148,12 @@ need to create a device template at the cloud.
 
 #### 3. MVP business construction
 
-1) Device modeling (on EnOS™ cloud platform):
+1. Device modeling (on EnOS™ cloud platform):
 
    Create a home energy storage domain – create a home site model – create a
 battery model;
 
-2) Modify the device, develop self-registration services and integrate MQTT
+2. Modify the device, develop self-registration services and integrate MQTT
 Client:
 
    Modify the battery device, develop device self-registration service in PLC
@@ -164,7 +163,7 @@ access standards. Download the license, device id, and key that have been
 applied at the platform to the device as firmware. This will allow automatic
 connection of the device to EnOS™ cloud platform on power-up.
 
-3) After the battery is powered on and connected to the grid, it will be
+3. After the battery is powered on and connected to the grid, it will be
 automatically connect to EnOS™ cloud platform for device registration and asset
 creation, and transmit the data already mapped to the model point to the cloud.
 
@@ -172,4 +171,7 @@ creation, and transmit the data already mapped to the model point to the cloud.
 completed. The next steps will be data acquisition, processing, and analysis via
 EnOS™ API with developed energy storage applications.
 
-![](media/Summary_of_device_access_home_page.png)
+.. image:: media/Summary_of_device_access_home_page.png
+
+
+<!--end-->

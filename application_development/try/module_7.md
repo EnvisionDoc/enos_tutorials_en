@@ -5,9 +5,8 @@ synchronization of the master data to the report databases, periodically fetchin
 data from the original point record forms to generate the data required for
 business goals and synchronizing them to the report databases.
 
-![](media/module_7_Cyclical_Workflows.png)
-
-*Fig. periodical Workflows*
+.. image:: media/module_7_Cyclical_Workflows.png
+   :alt: Fig. periodical Workflows
 
 ## Before you start
 
@@ -23,20 +22,19 @@ Enter **Data IDE > Task Designer** and create a new workflow,
 as described below: ( Please change to the job name of your own when performing
 the experiment):
 
-![](media/module_7_Creating_cyclical_jobs.png)
-
-*Fig. Creating periodical jobs*
+.. image:: media/module_7_Creating_cyclical_jobs.png
+   :alt: Fig. Creating periodical jobs
 
 ### Creating and configuring the shell nodes
 
 Creating a shell node:
 
-![](media/module_7_shell_node.png)
+.. image:: media/module_7_shell_node.png
 
 Double click the shell node and configure it. Make sure to save the changes. See
 below:
 
-![](media/module_7_shellsave.png)
+.. image:: media/module_7_shellsave.png
 
 - **Command**:
 
@@ -52,13 +50,11 @@ After saving the configuration, return to the workflow panel, click **Publish** 
 The task aims to create hive forms and store the synchronized master data, as
 described below:
 
-![](media/module_7_Creating_a_shell_node.png)
+.. image:: media/module_7_Creating_a_shell_node.png
+   :alt: Fig. Creating a shell node
 
-*Fig. Creating a shell node*
-
-![](media/module_7_Configuring_the_shell_node.png)
-
-*Fig. Configuring the shell node*
+.. image:: media/module_7_Configuring_the_shell_node.png
+   :alt: Fig. Configuring the shell node
 
 - **Command**: `sh run.sh --overwrite=${overwrite} --path=${path}`
 - **Resources**：mdm_hive
@@ -141,36 +137,31 @@ An example of the scripts are shown here, the name of which shall be changed whe
     echo "execute task successfully"
 ```
 
-![](media/module_7_execute_task_successfully.png)
+.. image:: media/module_7_execute_task_successfully.png
 
 ### Creating a new resource to upload the shell scripts
 
 Enter **Data IDE> Resource Manager**, create a new resource and
 upload the shell scripts:
 
-![](media/module_7_Create_the_resource_dw_meter_1h_demo.png)
+.. image:: media/module_7_Create_the_resource_dw_meter_1h_demo.png
+   :alt: Fig. Create the resource dw_meter_1h_demo
 
-*Fig. Create the resource dw_meter_1h_demo*
+.. image:: media/module_7_Upload_the_shell_scripts_of_dw_meter_1h_demo.png
+   :alt: Fig. Upload the shell scripts of dw_meter_1h_demo
 
-![](media/module_7_Upload_the_shell_scripts_of_dw_meter_1h_demo.png)
-
-*Fig. Upload the shell scripts of dw_meter_1h_demo*
-
-![](media/module_7_Shell_scripts_uploaded_successfully.png)
-
-*Fig. Shell scripts uploaded successfully*
+.. image:: media/module_7_Shell_scripts_uploaded_successfully.png
+   :alt: Fig. Shell scripts uploaded successfully
 
 ### Creating a shell node and linking it to the resources
 
 Enter **Data IDE**> **Task Designer**, create a shell node and configure it:
 
-![](media/module_7_Creating_a_shell_node_2.png)
+.. image:: media/module_7_Creating_a_shell_node_2.png
+   :alt: Fig. Creating a shell node
 
-*Fig. Creating a shell node*
-
-![](media/module_7_Related_resources.png)
-
-*Fig. Related resources*
+.. image:: media/module_7_Related_resources.png
+   :alt: Fig. Related resources
 
 - **Command**：`sh dw_meter_1h_demo.sh -s ${start_date} -e ${end_date} -q ${queue}`
 - **Resources**：dw_meter_1h_demo
@@ -185,16 +176,17 @@ relational databases, as described below:
 
 ### Creating a shell node
 
-![](media/module_7_syn_meter_1h_demo.png)
+.. image:: media/module_7_syn_meter_1h_demo.png
 
 ### Configure the shell node
 
-![](media/module_7_meter_1h_hive2.png)
+.. image:: media/module_7_meter_1h_hive2.png
 
 - **Command**:
+
   ```
     wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_meter_1h_demo -E TARGET_TBALE=dw_meter_1h_demo -E SOURCE_QUEUE=${queue} -E START_DATE=${start_date} -E END_DATE=${end_date}
-    ```
+  ```
 
 - **Resources**：HiveDB2ReportDB
 - **ResourcesVersion**：V1.0.1
@@ -289,31 +281,26 @@ An example of the scripts are shown here, the name of which shall be changed whe
     echo "execute task successfully"
 ```
 
-![](media/module_7_execute_task_successfully_2.png)
+.. image:: media/module_7_execute_task_successfully_2.png
 
 ### Creating a new resource to upload the shall scripts
 
-![](media/module_7_creating_a_new_source_dw_site_1h_domo.png)
+.. image:: media/module_7_creating_a_new_source_dw_site_1h_domo.png
+   :alt: Fig. Creating a new resource dw_site_1h_demo
 
-*Fig. Creating a new resource dw_site_1h_demo*
+.. image:: media/module_7_Uploading_the_shell_scripts_for_dw_site_1h_demo.png
+   :alt: Fig. Uploading the shell scripts for dw_site_1h_demo
 
-![](media/module_7_Uploading_the_shell_scripts_for_dw_site_1h_demo.png)
-
-*Fig. Uploading the shell scripts for dw_site_1h_demo*
-
-![](media/module_7_Shell_scripts_uploaded_successfully_2.png)
-
-*Fig. Shell scripts uploaded successfully*
+.. image:: media/module_7_Shell_scripts_uploaded_successfully_2.png
+   :alt: Fig. Shell scripts uploaded successfully
 
 ### Creating a shell node and linking it to the resources
 
-![](media/module_7_Creating_a_shell_node_3.png)
+.. image:: media/module_7_Creating_a_shell_node_3.png
+   :alt: Fig. Creating a shell node
 
-*Fig. Creating a shell node*
-
-![](media/module_7_related_resource_site_1h_demo.png)
-
-*Fig. Related resources*
+.. image:: media/module_7_related_resource_site_1h_demo.png
+   :alt: Fig. Related resources
 
 **Command**：*sh dw_site_1h_demo.sh -s ${start_date} -e ${end_date} -q ${queue}*
 
@@ -329,19 +316,19 @@ The job aims to synchronize the dw_site_1h_demo form in the hive to the report r
 
 ### Creating a shell node
 
-![](media/module_7_Creating_a_shell_node_3.png)
+.. image:: media/module_7_Creating_a_shell_node_3.png
 
 ### Configure the shell node
 
-![](media/module_7_Configure_the_shell_node_3.png)
+.. image:: media/module_7_Configure_the_shell_node_3.png
 
 **Command**:
 
-    wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_site_1h_demo -E
-    TARGET_TBALE=dw_site_1h_demo -E SOURCE_QUEUE=${queue} -E
-    START_DATE=${start_date} -E END_DATE=${end_date}
+wormhole HiveDB2ReportDB.xml -E SOURCE_TBALE=dw_site_1h_demo -E
+TARGET_TBALE=dw_site_1h_demo -E SOURCE_QUEUE=${queue} -E
+START_DATE=${start_date} -E END_DATE=${end_date}
 
-**Resources**:*HiveDB2ReportDB*
+**Resources**: *HiveDB2ReportDB*
 
 **ResourcesVersion**: *V1.0.1*
 
@@ -353,11 +340,11 @@ The job aims to synchronize the meter master data to the report relational datab
 
 ### Creating a shell node
 
-![](media/module_7_Creating_a_shell_node_4.png)
+.. image:: media/module_7_Creating_a_shell_node_4.png
 
 ### Configure the shell node
 
-![](media/module_7_synchronization_job_for_icat_c6_meter_demo_reports2.png)
+.. image:: media/module_7_synchronization_job_for_icat_c6_meter_demo_reports2.png
 
 - **Command**:
 
@@ -376,15 +363,16 @@ After saving the configuration, return to the workflow panel, click **Publish** 
 The job aims to configure the calling parameters for the whole workflow (when to
 run daily), and define the variables used in the job, as described below:
 
-![](media/module_7_calling_parameters_and_variables.png)
+.. image:: media/module_7_calling_parameters_and_variables.png
 
 - **Scheduling interval**: Day
 - **Specific time**: 01:00 ( To be noted that the time here is utc+8)
 - **Scheduling status**: Do not check "Pause"
 
-![](media/module_7_calling_parameters_and_variables2.png)
+.. image:: media/module_7_calling_parameters_and_variables2.png
 
 Parameters:
+
 ```
     start_date=${cal_dt8}
 
@@ -411,32 +399,28 @@ This session of the experiment aims to enable you to learn pre-run the jobs
 manually, to observe their running statuses and view the relevant logs with the
 job monitoring functions.
 
-1.  Select your workflow in **Data IDE Suite> Task Designer**, then click **Pre-run** .
+1. Select your workflow in **Data IDE Suite> Task Designer**, then click **Pre-run** .
 
-2.  Find the example workflow you pre-ran just now in Data Operation and **Manual instance > Pre-run**, as described below:
+2. Find the example workflow you pre-ran just now in Data Operation and **Manual instance > Pre-run**, as described below:
 
-    ![](media/module_7_View_the_pre_run_example.png)
+   .. image:: media/module_7_View_the_pre_run_example.png
+      :alt: Fig. View the pre-run example
 
-    *Fig. View the pre-run example*
+3. Click the name of your pre-run example, where the running status of each job-node can be viewed in the expanded running workflow page, as described below:
 
-3.  Click the name of your pre-run example, where the running status of each
-    job-node can be viewed in the expanded running workflow page, as described
-    below:
+   .. image:: media/module_7_View_the_running_status_of_the_pre_run_example.png
+      :alt: Fig. View the running status of the pre-run example
 
-    ![](media/module_7_View_the_running_status_of_the_pre_run_example.png)
+   Please note that the latest running status of the jobs can be viewed by clicking the "Refresh the Page" button on the upper left corner, as described below:
 
-    *Fig. View the running status of the pre-run example*
+   .. image:: media/6dcb80bec9244404260b8d7e3f2aff95.png
 
-    Please note that the latest running status of the jobs can be viewed by clicking the "Refresh the Page" button on the upper left corner, as described below:
+   .. image:: media/module_7_View_the_latest_job_status_by_refreshing_the_page.png
+      :alt: Fig. View the latest job status by refreshing the page
 
-    ![](media/6dcb80bec9244404260b8d7e3f2aff95.png)
+   You can view the descriptions of a job by clicking a job node, as described below:
 
-    ![](media/module_7_View_the_latest_job_status_by_refreshing_the_page.png)
+   .. image:: media/module_7_View_the_running_status_of_a_job_node.png
+      :alt: Fig. View the running status of a job node
 
-    *Fig. View the latest job status by refreshing the page*
-
-    You can view the descriptions of a job by clicking a job node, as described below:
-
-    ![](media/module_7_View_the_running_status_of_a_job_node.png)
-
-    *Fig. View the running status of a job node*
+<!--end-->
